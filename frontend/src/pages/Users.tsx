@@ -36,7 +36,7 @@ export default function Users() {
 
   return (
     <section>
-      <div>
+      <div className="filter_container">
         <form>
           <label>
             <input

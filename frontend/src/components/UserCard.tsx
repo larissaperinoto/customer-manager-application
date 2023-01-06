@@ -14,7 +14,7 @@ export default function UserCard({
       <h3>{name}</h3>
       <p>{email}</p>
       <p>{username}</p>
-      <p>{age}</p>
+      <p>{`Idade: ${age}`}</p>
     </div>
   );
 }
