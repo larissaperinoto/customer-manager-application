@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import clientsRoutes from "./routes/clients.routes";
 import loginRoutes from "./routes/login.routes";
 import userRoutes from "./routes/user.routes";
@@ -8,6 +9,13 @@ import authMiddleware from "./middlewares/auth.middleware";
 const app = express();
 
 app.use(express.json());
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
