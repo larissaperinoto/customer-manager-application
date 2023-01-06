@@ -12,7 +12,7 @@ app.use(express.json());
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
 app.use(authMiddleware);
-app.use("/client", clientsRoutes);
+app.use("/clients", clientsRoutes);
 
 app.use(errorMiddleware);
 
