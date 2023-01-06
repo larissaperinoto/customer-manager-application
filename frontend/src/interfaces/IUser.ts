@@ -1,8 +1,7 @@
 export default interface IUser {
-  thumbnail: string;
-  first: string;
-  last: string;
+  name: { first: string; last: string };
+  picture: { large: string };
   email: string;
-  username: string;
-  age: number;
+  login: { username: string };
+  dob: { age: string };
 }
