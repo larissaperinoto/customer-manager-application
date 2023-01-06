@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import UserCard from "../components/UserCard";
 import { requestUsers } from "../services/requests";
 
 export default function Users() {
@@ -12,5 +13,29 @@ export default function Users() {
     requestAPI();
   }, []);
 
-  return <div>{}</div>;
+  return (
+    <div>
+      {users &&
+        users.map(
+          ({
+            name: { first, last },
+            dob: { age },
+            email,
+            picture: { large },
+            login: { username },
+          }) => {
+            return (
+              <UserCard
+                thumbnail={large}
+                first={first}
+                last={last}
+                email={email}
+                username={username}
+                age={age}
+              />
+            );
+          }
+        )}
+    </div>
+  );
 }
