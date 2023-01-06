@@ -29,6 +29,11 @@ class ClientService {
       }
     );
   }
+
+  async delete(id: string) {
+    console.log("id", id);
+    await Client.deleteOne({ _id: new ObjectId(id) });
+  }
 }
 
 export default new ClientService();

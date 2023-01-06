@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import clientService from "../services/clients.service";
+import clientsService from "../services/clients.service";
 
 class ClientController {
   async findAll(_req: Request, res: Response, next: NextFunction) {
     try {
-      const clients = await clientService.findAll();
+      const clients = await clientsService.findAll();
       return res.status(200).json(clients);
     } catch (error) {
       next(error);
@@ -13,7 +13,7 @@ class ClientController {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const client = await clientService.create(req.body);
+      const client = await clientsService.create(req.body);
       return res.status(201).json(client);
     } catch (error) {
       next(error);
@@ -22,11 +22,20 @@ class ClientController {
 
   async updateById(req: Request, res: Response, next: NextFunction) {
     try {
-      const clientUpdated = await clientService.updateById(
+      const clientUpdated = await clientsService.updateById(
         req.params.id,
         req.body
       );
       return res.status(200).json(clientUpdated);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      await clientsService.delete(req.params.id);
+      return res.sendStatus(204);
     } catch (error) {
       next(error);
     }
