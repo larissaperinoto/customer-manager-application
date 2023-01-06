@@ -19,3 +19,9 @@ export async function requestUsers() {
   const { results } = await fetchApi.json();
   return results;
 }
+
+export async function requestCatsHttp(statusCode: string) {
+  const fetchApi = await fetch(`https://http.cat/${statusCode}`);
+  const { results } = await fetchApi.json();
+  return results;
+}
