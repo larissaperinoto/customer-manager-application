@@ -19,6 +19,18 @@ class ClientController {
       next(error);
     }
   }
+
+  async updateById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const clientUpdated = await clientService.updateById(
+        req.params.id,
+        req.body
+      );
+      return res.status(200).json(clientUpdated);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new ClientController();

@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import IClient from "../interfaces/IClient";
 import Client from "../models/Client.model";
 
@@ -15,6 +16,18 @@ class ClientService {
       cpf,
     });
     return client;
+  }
+
+  async updateById(
+    id: string,
+    { name, email, phoneNumber, address, cpf }: IClient
+  ) {
+    await Client.updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: { name, email, phoneNumber, address, cpf },
+      }
+    );
   }
 }
 
