@@ -10,6 +10,15 @@ class User {
       next(error);
     }
   }
+
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = await userService.create(req.body);
+      return res.status(201).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new User();
