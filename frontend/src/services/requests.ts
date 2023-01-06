@@ -15,3 +15,9 @@ export async function requestLogin(endpoint: string, body: ILogin) {
   const { data } = await api.post(endpoint, body);
   return data;
 }
+
+export async function requestUsers() {
+  const fetchApi = await fetch("https://randomuser.me/api/?results=50");
+  const { results } = await fetchApi.json();
+  return results;
+}
