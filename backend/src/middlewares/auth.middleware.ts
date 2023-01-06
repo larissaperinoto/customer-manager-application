@@ -11,9 +11,12 @@ const authMiddleware = async (
   if (!authorization)
     return res.status(401).json({ message: "Token not found" });
 
+  const secret = process.env.JWT_SECRET || "mysecret";
+
   try {
-    const user = jwt.verify(authorization, process.env.JWT_SECRET as string);
+    const user = jwt.verify(authorization, secret);
     req.body.user = user;
+
     next();
   } catch (error) {
     return res.status(401).json({ message: "Invalid token" });
