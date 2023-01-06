@@ -24,7 +24,7 @@ export default function Login() {
     }
   };
 
-  if (isLogged) return <Navigate to="/clients" />;
+  if (isLogged) return <Navigate to="/users" />;
 
   return (
     <>
