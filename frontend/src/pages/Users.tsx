@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UserCard from "../components/UserCard";
+import { UserCard } from "../components";
 import { requestUsers } from "../services/requests";
 
 export default function Users() {
