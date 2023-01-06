@@ -1,8 +1,6 @@
 import axios from "axios";
 import ILogin from "../interfaces/ILogin";
 
-console.log(process.env.API_PORT);
-
 const api = axios.create({
   baseURL: `http://localhost:${process.env.API_PORT || "3001"}`,
 });

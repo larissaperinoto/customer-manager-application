@@ -1,18 +1,17 @@
-import IUser from "../interfaces/IUser";
+import IUserCard from "../interfaces/IUserCard";
 import "../style/UserCard.css";
 
 export default function UserCard({
   thumbnail,
-  first,
-  last,
+  name,
   email,
   username,
   age,
-}: IUser) {
+}: IUserCard) {
   return (
     <div className="user_card">
-      <img src={thumbnail} alt={`${first} ${last}`} />
-      <h3>{`${first} ${last}`}</h3>
+      <img src={thumbnail} alt={name} />
+      <h3>{name}</h3>
       <p>{email}</p>
       <p>{username}</p>
       <p>{age}</p>
