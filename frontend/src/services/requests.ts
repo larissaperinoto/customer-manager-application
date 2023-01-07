@@ -1,4 +1,5 @@
 import axios from "axios";
+import IClient from "../interfaces/IClient";
 import ILogin from "../interfaces/ILogin";
 
 const api = axios.create({
@@ -9,7 +10,7 @@ export function setToken(token: string | any) {
   api.defaults.headers.common.Authorization = token;
 }
 
-export async function requestLogin(endpoint: string, body: ILogin) {
+export async function postAPI(endpoint: string, body: ILogin | IClient) {
   const { data } = await api.post(endpoint, body);
   return data;
 }
