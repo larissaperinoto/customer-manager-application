@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MouseEvent } from "react";
 import { Navigate } from "react-router-dom";
-import { requestLogin, setToken } from "../services/requests";
+import { postAPI, setToken } from "../services/requests";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -12,7 +12,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const { token } = await requestLogin("/login", { username, password });
+      const { token } = await postAPI("/login", { username, password });
 
       setToken(token);
 
