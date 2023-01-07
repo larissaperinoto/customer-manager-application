@@ -14,6 +14,10 @@ export default function Dogs() {
     requestAPI();
   }, []);
 
+  if (dog.includes("mp4")) {
+    requestDogs();
+  }
+
   return (
     <section className="dogs_section">
       <div className="reload_container">
