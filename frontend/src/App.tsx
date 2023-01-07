@@ -1,10 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import { Cats, Login, Users } from "./pages";
+import { Cats, Login, Users, Dogs } from "./pages";
 
 function App() {
   return (
     <Routes>
+      <Route path="/dogs" element={<Dogs />} />
       <Route path="/cats" element={<Cats />} />
       <Route path="/users" element={<Users />} />
       <Route path="/login" element={<Login />} />
