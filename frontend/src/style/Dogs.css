@@ -26,10 +26,20 @@
   width: 100%;
 }
 
+.rotate_icon {
+  animation: rotation 1s linear;
+}
+
 .dog_image_container {
   width: 400px;
 }
 
 .dog_image_container img {
   width: 100%;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(180deg);
+  }
 }

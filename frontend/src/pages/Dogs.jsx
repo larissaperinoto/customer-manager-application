@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { requestDogs } from "../services/requests";
 import "../style/Dogs.css";
 
 export default function Dogs() {
   const [dog, setDog] = useState("");
+  const reloadIcon = useRef(null);
 
   async function requestAPI() {
     const dog = await requestDogs();
     setDog(dog);
+    reloadIcon.current.className = "rotate_icon";
+    setTimeout(() => {
+      reloadIcon.current.className = "";
+    }, 2000);
   }
 
   useEffect(() => {
@@ -15,7 +20,7 @@ export default function Dogs() {
   }, []);
 
   useEffect(() => {
-    if (dog.includes("mp4")) {
+    if (dog.includes("mp4") || dog.includes("webm")) {
       requestAPI();
     }
   }, [dog]);
@@ -28,6 +33,7 @@ export default function Dogs() {
           <img
             src="https://img.icons8.com/office/480/null/synchronize.png"
             alt="Reload"
+            ref={reloadIcon}
           />
         </button>
       </div>
