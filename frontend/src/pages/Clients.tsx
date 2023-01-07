@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, MouseEvent } from "react";
+import { AxiosError } from "axios";
 import { ClientCard } from "../components";
 import { requestClients, setToken, postAPI } from "../services/requests";
 import "../style/Clients.css";
@@ -10,6 +11,7 @@ export default function Clients() {
   const [address, setAddress] = useState("");
   const [cpf, setCpf] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     async function requestAPI() {
@@ -21,14 +23,25 @@ export default function Clients() {
     requestAPI();
   }, []);
 
-  async function handlePostClient() {
-    await postAPI("/clients", {
-      name,
-      email,
-      address,
-      phoneNumber,
-      cpf,
-    });
+  async function handlePostClient(event: MouseEvent) {
+    event.preventDefault();
+
+    try {
+      await postAPI("/clients", {
+        name,
+        email,
+        address,
+        phoneNumber,
+        cpf,
+      });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 2000);
+      }
+    }
   }
 
   return (
@@ -40,7 +53,6 @@ export default function Clients() {
             <input
               type="text"
               value={name}
-              name="name"
               placeholder="Nome"
               onChange={(event) => setName(event.target.value)}
             />
@@ -49,7 +61,6 @@ export default function Clients() {
             <input
               type="email"
               value={email}
-              name="email"
               placeholder="Email"
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -67,7 +78,6 @@ export default function Clients() {
             <input
               type="number"
               value={cpf}
-              name="cpf"
               placeholder="CPF"
               onChange={(event) => setCpf(event.target.value)}
             />
@@ -76,15 +86,15 @@ export default function Clients() {
             <input
               type="tel"
               value={phoneNumber}
-              name="phoneNumber"
               placeholder="Telefone"
               onChange={(event) => setPhoneNumber(event.target.value)}
             />
           </label>
-          <button type="submit" onClick={() => handlePostClient()}>
+          <button type="submit" onClick={(event) => handlePostClient(event)}>
             Cadastrar
           </button>
         </form>
+        {errorMessage && <p>{errorMessage}</p>}
       </div>
       <div className="clients_container">
         {clients.map(({ name, email, address, phoneNumber, cpf }, index) => (
