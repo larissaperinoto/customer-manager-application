@@ -14,9 +14,11 @@ export default function Dogs() {
     requestAPI();
   }, []);
 
-  if (dog.includes("mp4")) {
-    requestDogs();
-  }
+  useEffect(() => {
+    if (dog.includes("mp4")) {
+      requestAPI();
+    }
+  }, [dog]);
 
   return (
     <section className="dogs_section">
