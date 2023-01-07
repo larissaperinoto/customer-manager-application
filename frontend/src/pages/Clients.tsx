@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ClientCard } from "../components";
 import { requestClients, setToken } from "../services/requests";
 
 export default function Clients() {
@@ -14,5 +15,19 @@ export default function Clients() {
     requestAPI();
   }, []);
 
-  return <div></div>;
+  return (
+    <>
+      <div>
+        {clients.map(({ name, email, address, phoneNumber, cpf }) => (
+          <ClientCard
+            name={name}
+            email={email}
+            address={address}
+            phoneNumber={phoneNumber}
+            cpf={cpf}
+          />
+        ))}
+      </div>
+    </>
+  );
 }
