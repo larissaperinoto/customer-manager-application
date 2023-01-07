@@ -17,7 +17,6 @@ export async function postAPI(endpoint: string, body: ILogin | IClient) {
 
 export async function requestClients() {
   const { data } = await api.get("clients");
-  console.log(data);
   return data;
 }
 
