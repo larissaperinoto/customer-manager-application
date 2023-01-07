@@ -19,3 +19,9 @@ export async function requestUsers() {
   const { results } = await fetchApi.json();
   return results;
 }
+
+export async function requestDogs() {
+  const fetchApi = await fetch("https://random.dog/woof.json");
+  const { url } = await fetchApi.json();
+  return url;
+}
