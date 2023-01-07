@@ -1,4 +1,5 @@
 import IClient from "../interfaces/IClient";
+import "../style/ClientCard.css";
 
 export default function ClientCard({
   name,
@@ -8,7 +9,7 @@ export default function ClientCard({
   cpf,
 }: IClient) {
   return (
-    <div>
+    <div className="client_card">
       <h3>{name}</h3>
       <p>{email}</p>
       <p>{phoneNumber}</p>

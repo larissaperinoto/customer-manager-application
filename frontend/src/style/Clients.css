@@ -1,0 +1,28 @@
+.clients_section_container {
+  display: flex;
+}
+
+.clients_form_container {
+  padding: 5%;
+  width: 20%;
+}
+
+.clients_form_container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.clients_form_container form label input {
+  width: 100%;
+  margin-bottom: 1%;
+}
+
+.clients_form_container form h2 {
+  width: 100%;
+  font-size: 100%;
+}
+
+.clients_container {
+  padding-top: 5%;
+  display: flex;
+}
