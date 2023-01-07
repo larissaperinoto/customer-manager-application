@@ -14,6 +14,12 @@ export async function requestLogin(endpoint: string, body: ILogin) {
   return data;
 }
 
+export async function requestClients() {
+  const { data } = await api.get("clients");
+  console.log(data);
+  return data;
+}
+
 export async function requestUsers() {
   const fetchApi = await fetch("https://randomuser.me/api/?results=50");
   const { results } = await fetchApi.json();
