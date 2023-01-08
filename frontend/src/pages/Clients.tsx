@@ -1,6 +1,6 @@
 import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
-import { ClientCard, ClientForm } from "../components";
+import { ClientCard, ClientForm, SearchForm } from "../components";
 import {
   requestClients,
   setToken,
@@ -10,10 +10,9 @@ import {
 } from "../services/requests";
 import "../style/Clients.css";
 import IClient from "../interfaces/IClient";
-import SearchClient from "../components/SearchClient";
 
 export default function Clients() {
-  const [clients, setClients] = useState([]);
+  const [clients, setClients] = useState([] as any[]);
   const [errorMessage, setErrorMessage] = useState("");
   const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
   const [filter, setFilter] = useState(String);
@@ -90,8 +89,8 @@ export default function Clients() {
   }, [errorMessage]);
 
   function handleSearch(searchBy: string, searchTerm: string) {
-    const clientsFiltered = clients.filter(
-      (user) => user[`${searchBy}`] === searchTerm
+    const clientsFiltered = clients.filter((user) =>
+      user[`${searchBy}`].includes(searchTerm)
     );
     setClients(clientsFiltered);
     setFilter(searchBy);
@@ -109,7 +108,7 @@ export default function Clients() {
           {errorMessage && <p>{errorMessage}</p>}
         </div>
         <div className="search_clients_container">
-          <SearchClient handleSearch={handleSearch} />
+          <SearchForm handleSearch={handleSearch} />
           {filter && <p>{`Filtrando por ${filter}`}</p>}
         </div>
       </aside>
