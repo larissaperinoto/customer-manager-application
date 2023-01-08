@@ -6,6 +6,7 @@ import {
   setToken,
   postAPI,
   deleteFromDB,
+  updateAPI,
 } from "../services/requests";
 import "../style/Clients.css";
 import IClient from "../interfaces/IClient";
@@ -13,6 +14,7 @@ import IClient from "../interfaces/IClient";
 export default function Clients() {
   const [clients, setClients] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
 
   async function requestAPI() {
     const clients = await requestClients();
@@ -55,17 +57,43 @@ export default function Clients() {
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setErrorMessage(error.response?.data.message);
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 2000);
       }
     }
   }
 
+  async function handleUpdateClient(event: MouseEvent, client: IClient) {
+    event.preventDefault();
+    const { _id, name, email, phoneNumber, address, cpf } = client;
+    try {
+      await updateAPI(_id as string, {
+        name,
+        email,
+        phoneNumber,
+        address,
+        cpf,
+      });
+      requestAPI();
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message);
+      }
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 2000);
+  }, [errorMessage]);
+
   return (
     <section className="clients_section_container">
       <div className="clients_form_container">
-        <ClientForm handlePostClient={handlePostClient} />
+        <ClientForm
+          handlePostClient={handlePostClient}
+          clientToUpdate={clientToUpdate}
+          handleUpdateClient={handleUpdateClient}
+        />
         {errorMessage && <p>{errorMessage}</p>}
       </div>
       <div className="clients_container">
@@ -73,6 +101,7 @@ export default function Clients() {
           <ClientCard
             client={client}
             handleDeleteClient={handleDeleteClient}
+            setClientToUpdate={setClientToUpdate}
             key={index}
           />
         ))}

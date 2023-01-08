@@ -19,6 +19,10 @@ export async function deleteFromDB(clientId: string) {
   await api.delete(`/clients/${clientId}`);
 }
 
+export async function updateAPI(clientId: string, body: IClient) {
+  await api.put(`/clients/${clientId}`, body);
+}
+
 export async function requestClients() {
   const { data } = await api.get("clients");
   return data;

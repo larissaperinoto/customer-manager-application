@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import IClient from "../interfaces/IClient";
 
-export default function ClientForm({ handlePostClient }: Function | any) {
+type ClientFormProps = {
+  handlePostClient: Function;
+  clientToUpdate: IClient;
+  handleUpdateClient: Function;
+};
+
+export default function ClientForm({
+  handlePostClient,
+  clientToUpdate,
+  handleUpdateClient,
+}: ClientFormProps | any) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [cpf, setCpf] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isToUpdate, setIsToUpdate] = useState(false);
+
+  useEffect(() => {
+    if (clientToUpdate.name) {
+      setIsToUpdate(true);
+      const { name, email, phoneNumber, address, cpf } = clientToUpdate;
+      setName(name);
+      setEmail(email);
+      setAddress(address);
+      setCpf(cpf);
+      setPhoneNumber(phoneNumber);
+    }
+  }, [clientToUpdate]);
+
   return (
     <form>
       <h2>Cadastrar novo cliente</h2>
@@ -50,14 +75,32 @@ export default function ClientForm({ handlePostClient }: Function | any) {
           onChange={(event) => setPhoneNumber(event.target.value)}
         />
       </label>
-      <button
-        type="submit"
-        onClick={(event) =>
-          handlePostClient(event, { name, email, address, cpf, phoneNumber })
-        }
-      >
-        Cadastrar
-      </button>
+      {isToUpdate ? (
+        <button
+          type="submit"
+          onClick={(event) =>
+            handleUpdateClient(event, {
+              _id: clientToUpdate._id,
+              name,
+              email,
+              address,
+              cpf,
+              phoneNumber,
+            })
+          }
+        >
+          Atualizar
+        </button>
+      ) : (
+        <button
+          type="submit"
+          onClick={(event) =>
+            handlePostClient(event, { name, email, address, cpf, phoneNumber })
+          }
+        >
+          Cadastrar
+        </button>
+      )}
     </form>
   );
 }

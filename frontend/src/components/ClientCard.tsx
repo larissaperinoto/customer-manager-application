@@ -4,11 +4,13 @@ import "../style/ClientCard.css";
 type ClientCardProps = {
   client: IClient;
   handleDeleteClient: Function;
+  setClientToUpdate: Function;
 };
 
 export default function ClientCard({
   client,
   handleDeleteClient,
+  setClientToUpdate,
 }: ClientCardProps | any) {
   const { _id, name, email, phoneNumber, address, cpf } = client;
 
@@ -20,6 +22,9 @@ export default function ClientCard({
       <p>{address}</p>
       <p>{cpf}</p>
       <div>
+        <button type="button" onClick={() => setClientToUpdate(client)}>
+          Atualizar
+        </button>
         <button
           type="submit"
           onClick={(event) => handleDeleteClient(event, _id)}
