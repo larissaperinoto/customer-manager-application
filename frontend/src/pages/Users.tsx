@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UserCard, SearchForm } from "../components";
+import { UserCard, SearchForm, Header } from "../components";
 import IUser from "../interfaces/IUser";
 import { requestUsers } from "../services/requests";
 import "../style/Users.css";
@@ -36,35 +36,38 @@ export default function Users() {
   };
 
   return (
-    <section>
-      <div className="filter_container">
-        <SearchForm handleSearch={handleSearch} />
-      </div>
-      <div>
-        {filter && (
-          <button type="button" onClick={() => requestAPI()}>
-            {filter}
-          </button>
-        )}
-      </div>
-      <div className="users_container">
-        {users.length ? (
-          users.map(({ name, age, email, thumbnail, username }, index) => {
-            return (
-              <UserCard
-                thumbnail={thumbnail}
-                name={name}
-                email={email}
-                username={username}
-                age={age}
-                key={index}
-              />
-            );
-          })
-        ) : (
-          <p>Não há usuários para mostrar</p>
-        )}
-      </div>
-    </section>
+    <>
+      <Header />
+      <section>
+        <div className="filter_container">
+          <SearchForm handleSearch={handleSearch} />
+        </div>
+        <div>
+          {filter && (
+            <button type="button" onClick={() => requestAPI()}>
+              {filter}
+            </button>
+          )}
+        </div>
+        <div className="users_container">
+          {users.length ? (
+            users.map(({ name, age, email, thumbnail, username }, index) => {
+              return (
+                <UserCard
+                  thumbnail={thumbnail}
+                  name={name}
+                  email={email}
+                  username={username}
+                  age={age}
+                  key={index}
+                />
+              );
+            })
+          ) : (
+            <p>Não há usuários para mostrar</p>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
