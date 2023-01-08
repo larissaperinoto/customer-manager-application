@@ -3,7 +3,7 @@
   flex-wrap: wrap;
 }
 
-.clients_form_container {
+aside {
   padding: 5%;
   width: 20%;
 }
@@ -18,7 +18,7 @@
   margin-bottom: 1%;
 }
 
-.clients_form_container form h2 {
+h2 {
   width: 100%;
   font-size: 100%;
 }
@@ -31,8 +31,8 @@
 }
 
 @media (max-width: 860px) {
-  .clients_form_container {
-    width: 70%;
+  aside {
+    width: 90%;
   }
 
   .clients_container {

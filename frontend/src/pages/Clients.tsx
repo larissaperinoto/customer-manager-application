@@ -10,11 +10,13 @@ import {
 } from "../services/requests";
 import "../style/Clients.css";
 import IClient from "../interfaces/IClient";
+import SearchClient from "../components/SearchClient";
 
 export default function Clients() {
   const [clients, setClients] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
+  const [filter, setFilter] = useState(String);
 
   async function requestAPI() {
     const clients = await requestClients();
@@ -87,16 +89,30 @@ export default function Clients() {
     }, 2000);
   }, [errorMessage]);
 
+  function handleSearch(searchBy: string, searchTerm: string) {
+    const clientsFiltered = clients.filter(
+      (user) => user[`${searchBy}`] === searchTerm
+    );
+    setClients(clientsFiltered);
+    setFilter(searchBy);
+  }
+
   return (
     <section className="clients_section_container">
-      <div className="clients_form_container">
-        <ClientForm
-          handlePostClient={handlePostClient}
-          clientToUpdate={clientToUpdate}
-          handleUpdateClient={handleUpdateClient}
-        />
-        {errorMessage && <p>{errorMessage}</p>}
-      </div>
+      <aside>
+        <div className="clients_form_container">
+          <ClientForm
+            handlePostClient={handlePostClient}
+            clientToUpdate={clientToUpdate}
+            handleUpdateClient={handleUpdateClient}
+          />
+          {errorMessage && <p>{errorMessage}</p>}
+        </div>
+        <div className="search_clients_container">
+          <SearchClient handleSearch={handleSearch} />
+          {filter && <p>{`Filtrando por ${filter}`}</p>}
+        </div>
+      </aside>
       <div className="clients_container">
         {clients.map((client, index) => (
           <ClientCard
