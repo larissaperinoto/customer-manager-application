@@ -1,0 +1,17 @@
+header {
+  top: 0;
+  padding: 20px 0;
+  text-align: end;
+}
+
+header button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 20px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+header button:hover {
+  border: 1px solid black;
+}
