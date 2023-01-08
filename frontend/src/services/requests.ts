@@ -15,6 +15,10 @@ export async function postAPI(endpoint: string, body: ILogin | IClient) {
   return data;
 }
 
+export async function deleteFromDB(clientId: string) {
+  await api.delete(`/clients/${clientId}`);
+}
+
 export async function requestClients() {
   const { data } = await api.get("clients");
   return data;
