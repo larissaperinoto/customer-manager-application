@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserCard, SearchForm, Header } from "../components";
+import Pagination from "../components/Pagination";
+import PaginationSelect from "../components/PaginationSelect";
 import IUser from "../interfaces/IUser";
 import { requestUsers } from "../services/requests";
 import "../style/Users.css";
@@ -7,6 +9,13 @@ import "../style/Users.css";
 export default function Users() {
   const [users, setUsers] = useState([] as any[]);
   const [filter, setFilter] = useState("" as string);
+  const [usersPerPage, setUsersPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const pages = Math.ceil(users.length / usersPerPage);
+  const startIndex = currentPage * usersPerPage;
+  const endIndex = startIndex + usersPerPage;
+  const currentItems = users.slice(startIndex, endIndex);
 
   async function requestAPI() {
     const data = await requestUsers();
@@ -50,23 +59,34 @@ export default function Users() {
           )}
         </div>
         <div className="users_container">
-          {users.length ? (
-            users.map(({ name, age, email, thumbnail, username }, index) => {
-              return (
-                <UserCard
-                  thumbnail={thumbnail}
-                  name={name}
-                  email={email}
-                  username={username}
-                  age={age}
-                  key={index}
-                />
-              );
-            })
+          {currentItems.length ? (
+            currentItems.map(
+              ({ name, age, email, thumbnail, username }, index) => {
+                return (
+                  <UserCard
+                    thumbnail={thumbnail}
+                    name={name}
+                    email={email}
+                    username={username}
+                    age={age}
+                    key={index}
+                  />
+                );
+              }
+            )
           ) : (
             <p>Não há usuários para mostrar</p>
           )}
         </div>
+        <PaginationSelect
+          usersPerPage={usersPerPage}
+          setUsersPerPage={setUsersPerPage}
+        />
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          pages={pages}
+          currentPage={currentPage}
+        />
       </section>
     </>
   );

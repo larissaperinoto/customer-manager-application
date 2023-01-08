@@ -1,6 +1,6 @@
 import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
-import { ClientCard, ClientForm, SearchForm } from "../components";
+import { ClientCard, ClientForm, Header, SearchForm } from "../components";
 import {
   requestClients,
   setToken,
@@ -97,41 +97,44 @@ export default function Clients() {
   }
 
   return (
-    <section className="clients_section_container">
-      <aside>
-        <div className="clients_form_container">
-          <ClientForm
-            handlePostClient={handlePostClient}
-            clientToUpdate={clientToUpdate}
-            handleUpdateClient={handleUpdateClient}
-          />
-          {errorMessage && <p>{errorMessage}</p>}
-        </div>
-        <div className="search_clients_container">
-          <SearchForm handleSearch={handleSearch} />
-        </div>
-        <div>
-          {filter && (
-            <button type="button" onClick={() => requestAPI()}>
-              {filter}
-            </button>
+    <>
+      <Header />
+      <section className="clients_section_container">
+        <aside>
+          <div className="clients_form_container">
+            <ClientForm
+              handlePostClient={handlePostClient}
+              clientToUpdate={clientToUpdate}
+              handleUpdateClient={handleUpdateClient}
+            />
+            {errorMessage && <p>{errorMessage}</p>}
+          </div>
+          <div className="search_clients_container">
+            <SearchForm handleSearch={handleSearch} />
+          </div>
+          <div>
+            {filter && (
+              <button type="button" onClick={() => requestAPI()}>
+                {filter}
+              </button>
+            )}
+          </div>
+        </aside>
+        <div className="clients_container">
+          {clients.length ? (
+            clients.map((client, index) => (
+              <ClientCard
+                client={client}
+                handleDeleteClient={handleDeleteClient}
+                setClientToUpdate={setClientToUpdate}
+                key={index}
+              />
+            ))
+          ) : (
+            <p>Não há clientes para mostrar</p>
           )}
         </div>
-      </aside>
-      <div className="clients_container">
-        {clients.length ? (
-          clients.map((client, index) => (
-            <ClientCard
-              client={client}
-              handleDeleteClient={handleDeleteClient}
-              setClientToUpdate={setClientToUpdate}
-              key={index}
-            />
-          ))
-        ) : (
-          <p>Não há clientes para mostrar</p>
-        )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
