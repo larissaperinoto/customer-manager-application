@@ -109,7 +109,13 @@ export default function Clients() {
         </div>
         <div className="search_clients_container">
           <SearchForm handleSearch={handleSearch} />
-          {filter && <p>{`Filtrando por ${filter}`}</p>}
+        </div>
+        <div>
+          {filter && (
+            <button type="button" onClick={() => requestAPI()}>
+              {filter}
+            </button>
+          )}
         </div>
       </aside>
       <div className="clients_container">
