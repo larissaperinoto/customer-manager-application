@@ -119,14 +119,18 @@ export default function Clients() {
         </div>
       </aside>
       <div className="clients_container">
-        {clients.map((client, index) => (
-          <ClientCard
-            client={client}
-            handleDeleteClient={handleDeleteClient}
-            setClientToUpdate={setClientToUpdate}
-            key={index}
-          />
-        ))}
+        {clients.length ? (
+          clients.map((client, index) => (
+            <ClientCard
+              client={client}
+              handleDeleteClient={handleDeleteClient}
+              setClientToUpdate={setClientToUpdate}
+              key={index}
+            />
+          ))
+        ) : (
+          <p>Não há clientes para mostrar</p>
+        )}
       </div>
     </section>
   );
