@@ -1,7 +1,12 @@
 import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
 import { ClientCard } from "../components";
-import { requestClients, setToken, postAPI } from "../services/requests";
+import {
+  requestClients,
+  setToken,
+  postAPI,
+  deleteFromDB,
+} from "../services/requests";
 import "../style/Clients.css";
 
 export default function Clients() {
@@ -13,15 +18,28 @@ export default function Clients() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  async function requestAPI() {
+    const clients = await requestClients();
+    setClients(clients);
+  }
+
   useEffect(() => {
-    async function requestAPI() {
-      const token = localStorage.getItem("token");
-      setToken(token);
-      const clients = await requestClients();
-      setClients(clients);
-    }
+    const token = localStorage.getItem("token");
+    setToken(token);
     requestAPI();
   }, []);
+
+  async function handleDeleteClient(event: MouseEvent, id: string) {
+    event.preventDefault();
+    try {
+      await deleteFromDB(id);
+      requestAPI();
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message);
+      }
+    }
+  }
 
   async function handlePostClient(event: MouseEvent) {
     event.preventDefault();
@@ -34,6 +52,7 @@ export default function Clients() {
         phoneNumber,
         cpf,
       });
+      requestAPI();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setErrorMessage(error.response?.data.message);
@@ -97,13 +116,10 @@ export default function Clients() {
         {errorMessage && <p>{errorMessage}</p>}
       </div>
       <div className="clients_container">
-        {clients.map(({ name, email, address, phoneNumber, cpf }, index) => (
+        {clients.map((client, index) => (
           <ClientCard
-            name={name}
-            email={email}
-            address={address}
-            phoneNumber={phoneNumber}
-            cpf={cpf}
+            client={client}
+            handleDeleteClient={handleDeleteClient}
             key={index}
           />
         ))}
