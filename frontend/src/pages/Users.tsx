@@ -6,21 +6,24 @@ import "../style/Users.css";
 
 export default function Users() {
   const [users, setUsers] = useState([] as any[]);
+  const [filter, setFilter] = useState("" as string);
+
+  async function requestAPI() {
+    const data = await requestUsers();
+    const users = data.map((user: IUser) => {
+      return {
+        name: `${user.name.first} ${user.name.last}`,
+        age: user.dob.age,
+        thumbnail: user.picture.large,
+        username: user.login.username,
+        email: user.email,
+      };
+    });
+    setUsers(users);
+    setFilter("");
+  }
 
   useEffect(() => {
-    async function requestAPI() {
-      const data = await requestUsers();
-      const users = data.map((user: IUser) => {
-        return {
-          name: `${user.name.first} ${user.name.last}`,
-          age: user.dob.age,
-          thumbnail: user.picture.large,
-          username: user.login.username,
-          email: user.email,
-        };
-      });
-      setUsers(users);
-    }
     requestAPI();
   }, []);
 
@@ -29,12 +32,20 @@ export default function Users() {
       user[`${searchBy}`].includes(searchTerm)
     );
     setUsers(userFiltered);
+    setFilter(`Resultados para ${searchTerm}`);
   };
 
   return (
     <section>
       <div className="filter_container">
         <SearchForm handleSearch={handleSearch} />
+      </div>
+      <div>
+        {filter && (
+          <button type="button" onClick={() => requestAPI()}>
+            {filter}
+          </button>
+        )}
       </div>
       <div className="users_container">
         {users &&
