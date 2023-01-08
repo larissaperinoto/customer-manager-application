@@ -48,7 +48,7 @@ export default function Users() {
         )}
       </div>
       <div className="users_container">
-        {users &&
+        {users.length ? (
           users.map(({ name, age, email, thumbnail, username }, index) => {
             return (
               <UserCard
@@ -60,7 +60,10 @@ export default function Users() {
                 key={index}
               />
             );
-          })}
+          })
+        ) : (
+          <p>Não há usuários para mostrar</p>
+        )}
       </div>
     </section>
   );
