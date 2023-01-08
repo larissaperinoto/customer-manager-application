@@ -73,6 +73,7 @@ export default function Clients() {
         cpf,
       });
       requestAPI();
+      setClientToUpdate({} as IClient);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setErrorMessage(error.response?.data.message);

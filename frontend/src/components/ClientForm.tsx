@@ -28,6 +28,13 @@ export default function ClientForm({
       setAddress(address);
       setCpf(cpf);
       setPhoneNumber(phoneNumber);
+    } else {
+      setIsToUpdate(false);
+      setName("");
+      setEmail("");
+      setAddress("");
+      setCpf("");
+      setPhoneNumber("");
     }
   }, [clientToUpdate]);
 
