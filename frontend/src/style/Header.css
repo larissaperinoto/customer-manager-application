@@ -4,7 +4,8 @@ header {
   text-align: end;
 }
 
-header button {
+header a {
+  text-decoration: none;
   border: 1px solid transparent;
   background-color: transparent;
   padding: 20px 30px;
@@ -12,6 +13,6 @@ header button {
   cursor: pointer;
 }
 
-header button:hover {
+header a:hover {
   border: 1px solid black;
 }

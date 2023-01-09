@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserCard, SearchForm, Header } from "../components";
+import FilterMessage from "../components/FilterMessage";
 import Pagination from "../components/Pagination";
 import PaginationSelect from "../components/PaginationSelect";
 import IUser from "../interfaces/IUser";
@@ -51,13 +52,7 @@ export default function Users() {
         <div className="filter_container">
           <SearchForm handleSearch={handleSearch} />
         </div>
-        <div>
-          {filter && (
-            <button type="button" onClick={() => requestAPI()}>
-              {filter}
-            </button>
-          )}
-        </div>
+        <FilterMessage filter={filter} requestAPI={requestAPI} />
         <div className="users_container">
           {currentItems.length ? (
             currentItems.map(

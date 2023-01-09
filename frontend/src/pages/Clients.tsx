@@ -10,16 +10,18 @@ import {
 } from "../services/requests";
 import "../style/Clients.css";
 import IClient from "../interfaces/IClient";
+import FilterMessage from "../components/FilterMessage";
 
 export default function Clients() {
   const [clients, setClients] = useState([] as any[]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("" as string);
   const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
-  const [filter, setFilter] = useState(String);
+  const [filter, setFilter] = useState("" as string);
 
   async function requestAPI() {
     const clients = await requestClients();
     setClients(clients);
+    setFilter("");
   }
 
   useEffect(() => {
@@ -93,7 +95,7 @@ export default function Clients() {
       user[`${searchBy}`].includes(searchTerm)
     );
     setClients(clientsFiltered);
-    setFilter(searchBy);
+    setFilter(`Resultados para ${searchTerm}`);
   }
 
   return (
@@ -112,13 +114,7 @@ export default function Clients() {
           <div className="search_clients_container">
             <SearchForm handleSearch={handleSearch} />
           </div>
-          <div>
-            {filter && (
-              <button type="button" onClick={() => requestAPI()}>
-                {filter}
-              </button>
-            )}
-          </div>
+          <FilterMessage filter={filter} requestAPI={requestAPI} />
         </aside>
         <div className="clients_container">
           {clients.length ? (
