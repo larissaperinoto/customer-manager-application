@@ -22,12 +22,11 @@ export default function Registration() {
 
   return (
     <>
-      <ResgistrationForm handleRegistration={handleRegistration} />
-      <p>{errorMessage}</p>
-      <p>
-        Já tem uma conta? <a href="/login">Entrar</a>
-      </p>
-      {registrationSuccess && <p>Usuário cadastrado com sucesso</p>}
+      <ResgistrationForm
+        handleRegistration={handleRegistration}
+        errorMessage={errorMessage}
+        registrationSuccess={registrationSuccess}
+      />
     </>
   );
 }

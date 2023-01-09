@@ -6,6 +6,8 @@ import {
   Button,
   Checkbox,
   Container,
+  FormControl,
+  FormControlLabel,
   Stack,
   TextField,
   Typography,
@@ -50,8 +52,8 @@ export default function Login() {
 
   return (
     <>
-      <Container maxWidth="sm">
-        <form>
+      <Container maxWidth="md" sx={{ mt: 20 }}>
+        <FormControl>
           <Stack direction="column" spacing={2}>
             <Typography variant="h1" textAlign="center" sx={{ fontSize: 30 }}>
               Entre com sua conta
@@ -79,17 +81,21 @@ export default function Login() {
             >
               Entrar
             </Button>
-
-            <Checkbox
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-              inputProps={{ "aria-label": "controlled" }}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+              }
+              label="Permanecer logado"
             />
           </Stack>
-        </form>
-        <Typography variant="body1" textAlign="center">
-          Não tem uma conta? <Link href="/registration">Inscreva-se</Link>
-        </Typography>
+          <Typography variant="body1" textAlign="center">
+            Não tem uma conta? <Link href="/registration">Inscreva-se</Link>
+          </Typography>
+        </FormControl>
       </Container>
     </>
   );
