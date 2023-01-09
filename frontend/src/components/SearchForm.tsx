@@ -1,3 +1,11 @@
+import {
+  Button,
+  FormControl,
+  MenuItem,
+  Select,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -6,9 +14,9 @@ type SearchClientProps = {
 };
 
 export default function SearchClient({ handleSearch }: SearchClientProps) {
-  const [searchTerm, setSearchTerm] = useState(String);
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchBy, setSearchBy] = useState("name");
-  const [path, setPath] = useState(String);
+  const [path, setPath] = useState("");
   const history = useLocation();
 
   useEffect(() => {
@@ -16,41 +24,45 @@ export default function SearchClient({ handleSearch }: SearchClientProps) {
   }, []);
 
   return (
-    <div className="search_clients_container">
-      <form>
-        <h2>Buscar um cliente</h2>
-        <label>
-          <input
-            type="text"
-            placeholder="Insira o termo de busca"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-        </label>
-        <label>
-          Buscar por
-          <select onChange={(event) => setSearchBy(event.target.value)}>
-            <option value="name" selected>
-              Nome
-            </option>
-            {path === "/users" ? (
-              <option value="username">Username</option>
-            ) : (
-              <>
-                <option value="cpf">CPF</option>
-                <option value="phoneNumber">Telefone</option>
-              </>
-            )}
-            <option value="email">Email</option>
-          </select>
-        </label>
-        <button
+    <FormControl sx={{ ml: 5 }}>
+      <Stack direction="row" spacing={1}>
+        <TextField
+          id="outlined-basic"
+          label="Insira o termo de busca"
+          variant="standard"
+          size="small"
+          type="text"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+        <Select
+          onChange={(event) =>
+            setSearchBy(event.target.value as unknown as string)
+          }
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          label="Filtrar por"
+          size="small"
+        >
+          <MenuItem value="name">Nome</MenuItem>
+          <MenuItem value="email">Email</MenuItem>
+          {path === "/users" ? (
+            <MenuItem value="username">Username</MenuItem>
+          ) : (
+            <>
+              <MenuItem value="cpf">CPF</MenuItem>
+              <MenuItem value="phoneNumber">Telefone</MenuItem>
+            </>
+          )}
+        </Select>
+        <Button
           type="button"
           onClick={() => handleSearch(searchBy, searchTerm)}
+          color="secondary"
         >
           Buscar
-        </button>
-      </form>
-    </div>
+        </Button>
+      </Stack>
+    </FormControl>
   );
 }
