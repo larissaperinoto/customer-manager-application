@@ -3,3 +3,4 @@ export { default as Users } from "./Users";
 export { default as Cats } from "./Cats";
 export { default as Dogs } from "./Dogs";
 export { default as Clients } from "./Clients";
+export { default as Registration } from "./Registration";

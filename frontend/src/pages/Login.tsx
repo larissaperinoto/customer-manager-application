@@ -66,6 +66,9 @@ export default function Login() {
             Permanecer Logado
           </label>
         </form>
+        <p>
+          Não tem uma conta? <a href="/registration">Inscreva-se</a>
+        </p>
       </section>
     </>
   );
