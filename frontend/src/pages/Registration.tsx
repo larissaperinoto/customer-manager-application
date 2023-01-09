@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { ResgistrationForm } from "../components";
 import ILogin from "../interfaces/ILogin";
 import { postAPI } from "../services/requests";
@@ -19,6 +20,13 @@ export default function Registration() {
       }
     }
   }
+  useEffect(() => {
+    if (registrationSuccess) {
+      setTimeout(() => {
+        return <Navigate to="/login" />;
+      }, 2000);
+    }
+  }, [registrationSuccess]);
 
   return (
     <>

@@ -3,12 +3,11 @@ import {
   Link,
   Container,
   FormControl,
-  FormGroup,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type RegistrationFormProps = {
   handleRegistration: Function;
@@ -24,6 +23,14 @@ export default function ReistrationForm({
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (registrationSuccess) {
+      setEmail("");
+      setPassword("");
+      setUsername("");
+    }
+  }, [registrationSuccess]);
 
   return (
     <Container maxWidth="sm" sx={{ mt: 20 }}>
