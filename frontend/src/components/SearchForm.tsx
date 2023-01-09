@@ -24,7 +24,7 @@ export default function SearchClient({ handleSearch }: SearchClientProps) {
   }, []);
 
   return (
-    <FormControl sx={{ ml: 5 }}>
+    <FormControl sx={{ ml: 2 }}>
       <Stack direction="row" spacing={1}>
         <TextField
           id="outlined-basic"
@@ -57,8 +57,10 @@ export default function SearchClient({ handleSearch }: SearchClientProps) {
         </Select>
         <Button
           type="button"
+          variant="contained"
           onClick={() => handleSearch(searchBy, searchTerm)}
           color="secondary"
+          size="small"
         >
           Buscar
         </Button>

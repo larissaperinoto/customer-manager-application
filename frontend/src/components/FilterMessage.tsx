@@ -1,3 +1,5 @@
+import { Button, Container } from "@mui/material";
+
 type FilterMessageProps = {
   filter: string;
   requestAPI: Function;
@@ -8,12 +10,17 @@ export default function FilterMessage({
   requestAPI,
 }: FilterMessageProps) {
   return (
-    <div>
+    <Container sx={{ mt: 1, mb: 2 }}>
       {filter && (
-        <button type="button" onClick={() => requestAPI()}>
+        <Button
+          type="button"
+          color="success"
+          variant="text"
+          onClick={() => requestAPI()}
+        >
           {filter}
-        </button>
+        </Button>
       )}
-    </div>
+    </Container>
   );
 }
