@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import { MouseEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { postAPI, setToken } from "../services/requests";
+import {
+  Button,
+  Checkbox,
+  Container,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Link from "@mui/material/Link";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -36,40 +45,46 @@ export default function Login() {
 
   return (
     <>
-      <section>
+      <Container maxWidth="sm">
         <form>
-          <label htmlFor="email_input">
-            <input
+          <Stack direction="column" spacing={2}>
+            <Typography variant="h1" textAlign="center" sx={{ fontSize: 30 }}>
+              Entre com sua conta
+            </Typography>
+            <TextField
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
               type="text"
-              value={username}
               onChange={({ target: { value } }) => setUsername(value)}
-              placeholder="Username"
             />
-          </label>
-          <label htmlFor="password_input">
-            <input
+            <TextField
+              id="outlined-basic"
+              label="Senha"
+              variant="outlined"
               type="password"
               value={password}
               onChange={({ target: { value } }) => setPassword(value)}
-              placeholder="Senha"
             />
-          </label>
-          <button type="submit" onClick={(event) => handleLogin(event)}>
-            Entrar
-          </button>
-          <label htmlFor="remember_input">
-            <input
-              type="checkbox"
+            <Button
+              variant="contained"
+              type="submit"
+              onClick={(event) => handleLogin(event)}
+            >
+              Entrar
+            </Button>
+
+            <Checkbox
               checked={rememberMe}
               onChange={() => setRememberMe(!rememberMe)}
+              inputProps={{ "aria-label": "controlled" }}
             />
-            Permanecer Logado
-          </label>
+          </Stack>
         </form>
-        <p>
-          Não tem uma conta? <a href="/registration">Inscreva-se</a>
-        </p>
-      </section>
+        <Typography variant="body1" textAlign="center">
+          Não tem uma conta? <Link href="/registration">Inscreva-se</Link>
+        </Typography>
+      </Container>
     </>
   );
 }
