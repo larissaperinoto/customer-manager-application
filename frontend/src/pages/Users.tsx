@@ -49,9 +49,7 @@ export default function Users() {
     <>
       <Header />
       <section>
-        <div className="filter_container">
-          <SearchForm handleSearch={handleSearch} />
-        </div>
+        <SearchForm handleSearch={handleSearch} />
         <FilterMessage filter={filter} requestAPI={requestAPI} />
         <div className="users_container">
           {currentItems.length ? (

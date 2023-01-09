@@ -101,21 +101,19 @@ export default function Clients() {
   return (
     <>
       <Header />
+      <aside>
+        <div className="clients_form_container">
+          <ClientForm
+            handlePostClient={handlePostClient}
+            clientToUpdate={clientToUpdate}
+            handleUpdateClient={handleUpdateClient}
+          />
+          {errorMessage && <p>{errorMessage}</p>}
+        </div>
+        <SearchForm handleSearch={handleSearch} />
+        <FilterMessage filter={filter} requestAPI={requestAPI} />
+      </aside>
       <section className="clients_section_container">
-        <aside>
-          <div className="clients_form_container">
-            <ClientForm
-              handlePostClient={handlePostClient}
-              clientToUpdate={clientToUpdate}
-              handleUpdateClient={handleUpdateClient}
-            />
-            {errorMessage && <p>{errorMessage}</p>}
-          </div>
-          <div className="search_clients_container">
-            <SearchForm handleSearch={handleSearch} />
-          </div>
-          <FilterMessage filter={filter} requestAPI={requestAPI} />
-        </aside>
         <div className="clients_container">
           {clients.length ? (
             clients.map((client, index) => (
