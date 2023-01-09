@@ -50,7 +50,7 @@ export default function Users() {
       <Header />
       <SearchForm handleSearch={handleSearch} />
       <FilterMessage filter={filter} requestAPI={requestAPI} />
-      <Grid container spacing={2} alignItems="center">
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
         {currentItems.length ? (
           currentItems.map(
             ({ name, age, email, thumbnail, username }, index) => {

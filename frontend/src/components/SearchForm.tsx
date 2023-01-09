@@ -24,7 +24,7 @@ export default function SearchClient({ handleSearch }: SearchClientProps) {
   }, []);
 
   return (
-    <FormControl sx={{ ml: 2 }}>
+    <FormControl sx={{ ml: 3 }}>
       <Stack direction="row" spacing={1}>
         <TextField
           id="outlined-basic"
