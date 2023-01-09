@@ -1,4 +1,4 @@
-# Desafio para o processo seletivo SHARENERGY 2023/01
+# Desafio SHARENERGY 2023/01
 
 ## Objetivo
 
@@ -77,7 +77,7 @@ Entre na na branch `larissa-caroline-perinoto` com o comando abaixo
 
     git checkout larissa-caroline-perinoto
 
-Suba os containers do **sharenerny_frontend**, **sharenerny_backend** e **sharenerny_db** com o comando abaixo
+Suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
 
     docker-compose up -d
 
