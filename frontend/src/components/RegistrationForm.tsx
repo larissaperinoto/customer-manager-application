@@ -44,6 +44,7 @@ export default function ReistrationForm({
             label="Username"
             variant="outlined"
             type="text"
+            value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
           <TextField
@@ -51,6 +52,7 @@ export default function ReistrationForm({
             label="Email"
             variant="outlined"
             type="email"
+            value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
           <TextField
@@ -59,6 +61,7 @@ export default function ReistrationForm({
             helperText={errorMessage}
             variant="outlined"
             type="password"
+            value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
           <Button
