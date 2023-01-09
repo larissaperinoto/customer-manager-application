@@ -1,9 +1,25 @@
 version: "3"
 services:
+  frontend:
+    build: ./frontend
+    container_name: sharenergy_frontend
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    environment:
+      API_PORT: 3001
+
   backend:
-    image: node:16.14
+    build: ./backend
     container_name: sharenergy_backend
-    build: ./
     tty: true
     stdin_open: true
     command: bash
