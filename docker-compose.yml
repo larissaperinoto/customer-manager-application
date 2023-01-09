@@ -1,0 +1,50 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    container_name: sharenergy_frontend
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    environment:
+      API_PORT: 3001
+
+  backend:
+    build: ./backend
+    container_name: sharenergy_backend
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app/backend
+    volumes:
+      - ./backend:/app/backend
+    depends_on:
+      - mongodb
+    ports:
+      - 3001:3001
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/sharenergy
+      SERVER_PORT: 3001
+      JWT_SECRET: mysecret
+
+  mongodb:
+    image: mongo:5.0.7
+    container_name: sharenergy_db
+    volumes:
+      - ./:/app
+    restart: always
+    ports:
+      - 27017:27017
+
+networks:
+  default:
+    name: sharenergy_net
