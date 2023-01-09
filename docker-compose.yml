@@ -1,9 +1,8 @@
 version: "3"
 services:
   frontend:
-    image: node:16.14
+    build: ./frontend
     container_name: sharenergy_frontend
-    build: ./
     tty: true
     stdin_open: true
     command: bash
@@ -19,9 +18,8 @@ services:
       API_PORT: 3001
 
   backend:
-    image: node:16.14
+    build: ./backend
     container_name: sharenergy_backend
-    build: ./
     tty: true
     stdin_open: true
     command: bash
