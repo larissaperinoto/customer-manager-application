@@ -1,3 +1,4 @@
+import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { UserCard, SearchForm, Header } from "../components";
 import FilterMessage from "../components/FilterMessage";
@@ -5,11 +6,10 @@ import Pagination from "../components/Pagination";
 import PaginationSelect from "../components/PaginationSelect";
 import IUser from "../interfaces/IUser";
 import { requestUsers } from "../services/requests";
-import "../style/Users.css";
 
 export default function Users() {
   const [users, setUsers] = useState([] as any[]);
-  const [filter, setFilter] = useState("" as string);
+  const [filter, setFilter] = useState("");
   const [usersPerPage, setUsersPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -48,39 +48,39 @@ export default function Users() {
   return (
     <>
       <Header />
-      <section>
-        <SearchForm handleSearch={handleSearch} />
-        <FilterMessage filter={filter} requestAPI={requestAPI} />
-        <div className="users_container">
-          {currentItems.length ? (
-            currentItems.map(
-              ({ name, age, email, thumbnail, username }, index) => {
-                return (
-                  <UserCard
-                    thumbnail={thumbnail}
-                    name={name}
-                    email={email}
-                    username={username}
-                    age={age}
-                    key={index}
-                  />
-                );
-              }
-            )
-          ) : (
-            <p>Não há usuários para mostrar</p>
-          )}
-        </div>
-        <PaginationSelect
-          usersPerPage={usersPerPage}
-          setUsersPerPage={setUsersPerPage}
-        />
-        <Pagination
-          setCurrentPage={setCurrentPage}
-          pages={pages}
-          currentPage={currentPage}
-        />
-      </section>
+      <SearchForm handleSearch={handleSearch} />
+      <FilterMessage filter={filter} requestAPI={requestAPI} />
+      <Grid container spacing={2} alignItems="center">
+        {currentItems.length ? (
+          currentItems.map(
+            ({ name, age, email, thumbnail, username }, index) => {
+              return (
+                <UserCard
+                  thumbnail={thumbnail}
+                  name={name}
+                  email={email}
+                  username={username}
+                  age={age}
+                  key={index}
+                />
+              );
+            }
+          )
+        ) : (
+          <Typography variant="body2" textAlign="center">
+            Não há usuários para mostrar
+          </Typography>
+        )}
+      </Grid>
+      <PaginationSelect
+        usersPerPage={usersPerPage}
+        setUsersPerPage={setUsersPerPage}
+      />
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        pages={pages}
+        currentPage={currentPage}
+      />
     </>
   );
 }
