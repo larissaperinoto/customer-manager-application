@@ -67,15 +67,11 @@ Na elaboração deste projeto utilizou-se as seguintes ferramentas:
 
 Para executar a aplicação inicie realizando o clone deste repositório com o comando abaixo.
 
-    git clone git@github.com:SHARENERGY-OFICIAL/desafio-sharenergy-2023-01.git
+    git clone git@github.com:larissaperinoto/desafio-sharenergy-2023-01.git
 
 Navegue até a raíz do projeto.
 
     cd desafio-sharenergy-2023-01/
-
-Entre na na branch `larissa-caroline-perinoto` com o comando abaixo
-
-    git checkout larissa-caroline-perinoto
 
 Suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
 
