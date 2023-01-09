@@ -11,12 +11,14 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "@mui/material/Link";
+import { AxiosError } from "axios";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogged, setIsLogged] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (event: MouseEvent) => {
     event.preventDefault();
@@ -26,8 +28,11 @@ export default function Login() {
       setToken(token);
       localStorage.setItem("token", token);
       setIsLogged(true);
-    } catch (error) {
-      setIsLogged(false);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message);
+        setIsLogged(false);
+      }
     }
   };
 
@@ -62,6 +67,7 @@ export default function Login() {
               id="outlined-basic"
               label="Senha"
               variant="outlined"
+              helperText={errorMessage}
               type="password"
               value={password}
               onChange={({ target: { value } }) => setPassword(value)}
