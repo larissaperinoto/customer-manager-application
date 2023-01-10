@@ -15,7 +15,7 @@ export default function ClientCard({
   const { _id, name, email, phoneNumber, address, cpf } = client;
 
   return (
-    <Card sx={{ padding: 5 }}>
+    <Card sx={{ padding: 5, margin: 1 }}>
       <Typography
         variant="h2"
         textAlign="center"

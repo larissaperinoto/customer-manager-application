@@ -119,20 +119,22 @@ export default function Clients() {
         </Grid>
 
         <Grid item alignItems={"center"} justifyContent={"center"}>
-          {clients.length ? (
-            clients.map((client, index) => (
-              <ClientCard
-                client={client}
-                handleDeleteClient={handleDeleteClient}
-                setClientToUpdate={setClientToUpdate}
-                key={index}
-              />
-            ))
-          ) : (
-            <Typography variant="body1" textAlign="center">
-              Não há clientes para mostrar
-            </Typography>
-          )}
+          <Grid container alignItems={"center"} justifyContent={"center"}>
+            {clients.length ? (
+              clients.map((client, index) => (
+                <ClientCard
+                  client={client}
+                  handleDeleteClient={handleDeleteClient}
+                  setClientToUpdate={setClientToUpdate}
+                  key={index}
+                />
+              ))
+            ) : (
+              <Typography variant="body1" textAlign="center">
+                Não há clientes para mostrar
+              </Typography>
+            )}
+          </Grid>
         </Grid>
       </Grid>
     </>

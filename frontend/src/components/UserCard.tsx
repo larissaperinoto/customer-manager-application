@@ -1,5 +1,5 @@
+import { Typography, Card, Grid } from "@mui/material";
 import IUserCard from "../interfaces/IUserCard";
-import "../style/UserCard.css";
 
 export default function UserCard({
   thumbnail,
@@ -9,12 +9,27 @@ export default function UserCard({
   age,
 }: IUserCard) {
   return (
-    <div className="user_card">
-      <img src={thumbnail} alt={name} />
-      <h3>{name}</h3>
-      <p>{email}</p>
-      <p>{username}</p>
-      <p>{`Idade: ${age}`}</p>
-    </div>
+    <Grid item>
+      <Card sx={{ padding: 4, textAlign: "center" }}>
+        <img src={thumbnail} alt={name} />
+        <Typography
+          variant="h2"
+          textAlign="center"
+          sx={{ fontSize: 20, fontWeight: 600 }}
+        >
+          {name}
+        </Typography>
+        <Typography variant="body1" textAlign="center">
+          {email}
+        </Typography>
+        <Typography variant="body1" textAlign="center">
+          {username}
+        </Typography>
+        <Typography
+          variant="body1"
+          textAlign="center"
+        >{`Idade: ${age}`}</Typography>
+      </Card>
+    </Grid>
   );
 }

@@ -1,4 +1,5 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { UserCard, SearchForm, Header } from "../components";
 import FilterMessage from "../components/FilterMessage";
@@ -72,15 +73,19 @@ export default function Users() {
           </Typography>
         )}
       </Grid>
-      <PaginationSelect
-        usersPerPage={usersPerPage}
-        setUsersPerPage={setUsersPerPage}
-      />
-      <Pagination
-        setCurrentPage={setCurrentPage}
-        pages={pages}
-        currentPage={currentPage}
-      />
+      <Container sx={{ mb: 10, mt: 3 }}>
+        <Stack direction="row" spacing={2}>
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            pages={pages}
+            currentPage={currentPage}
+          />
+          <PaginationSelect
+            usersPerPage={usersPerPage}
+            setUsersPerPage={setUsersPerPage}
+          />
+        </Stack>
+      </Container>
     </>
   );
 }

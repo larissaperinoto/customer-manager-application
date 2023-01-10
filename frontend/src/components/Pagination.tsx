@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { CSSProperties } from "react";
 
 type PaginationProps = {
@@ -12,14 +13,17 @@ export default function Pagination({
   currentPage,
 }: PaginationProps) {
   return (
-    <div>
+    <>
       {Array.from(Array(pages), (_page, index) => {
         return (
-          <button
+          <Button
+            size="small"
+            variant="outlined"
+            color="inherit"
             value={index}
             style={
               index === currentPage
-                ? ({ backgroundColor: "blue" } as CSSProperties)
+                ? ({ backgroundColor: "gray" } as CSSProperties)
                 : undefined
             }
             onClick={(event) =>
@@ -29,9 +33,9 @@ export default function Pagination({
             }
           >
             {index + 1}
-          </button>
+          </Button>
         );
       })}
-    </div>
+    </>
   );
 }
