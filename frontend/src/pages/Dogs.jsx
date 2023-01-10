@@ -1,3 +1,4 @@
+import { Container, Typography, IconButton, Stack, Grid } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { Header } from "../components";
 import { requestDogs } from "../services/requests";
@@ -29,21 +30,34 @@ export default function Dogs() {
   return (
     <>
       <Header />
-      <section className="dogs_section">
-        <div className="reload_container">
-          <h2>Recarregue um doguinho</h2>
-          <button type="button" onClick={() => requestAPI()}>
+      <Stack direction={"column"}>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          sx={{ mb: 5 }}
+        >
+          <Typography variant="h1" textAlign="center" sx={{ fontSize: 20 }}>
+            Recarregue um doguinho
+          </Typography>
+          <IconButton
+            onClick={() => requestAPI()}
+            size="small"
+            className="button_reload"
+          >
             <img
               src="https://img.icons8.com/office/480/null/synchronize.png"
               alt="Reload"
+              className="rotate_icon"
               ref={reloadIcon}
+              width="40px"
             />
-          </button>
-        </div>
-        <div className="dog_image_container">
-          <img src={dog} alt="Dog" />
-        </div>
-      </section>
+          </IconButton>
+        </Grid>
+        <Container maxWidth="sm" sx={{ textAlign: "center" }}>
+          <img src={dog} alt="Dog" width="300px" />
+        </Container>
+      </Stack>
     </>
   );
 }

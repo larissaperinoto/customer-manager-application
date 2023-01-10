@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import "../style/Pagination.css";
 
 type PaginationProps = {
   setCurrentPage: Function;
@@ -12,14 +13,16 @@ export default function Pagination({
   currentPage,
 }: PaginationProps) {
   return (
-    <div>
+    <>
       {Array.from(Array(pages), (_page, index) => {
         return (
           <button
+            color="inherit"
             value={index}
+            className="pagination_button"
             style={
               index === currentPage
-                ? ({ backgroundColor: "blue" } as CSSProperties)
+                ? ({ backgroundColor: "gray" } as CSSProperties)
                 : undefined
             }
             onClick={(event) =>
@@ -32,6 +35,6 @@ export default function Pagination({
           </button>
         );
       })}
-    </div>
+    </>
   );
 }
