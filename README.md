@@ -28,6 +28,7 @@ A aplicação desenvolvida conta com algumas páginas e funcionalidades, são el
     <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express"/>
     <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
     <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white" alt="Swagger" />
+    <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="Material ui" />
 </div>
 
 <br>
@@ -41,6 +42,7 @@ Na elaboração deste projeto utilizou-se as seguintes ferramentas:
 - [ReactJS](https://pt-br.reactjs.org/)
 - [React router](https://reactrouter.com/en/main)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Material ui](https://mui.com/)
 
 ### Back-end
 
@@ -67,15 +69,11 @@ Na elaboração deste projeto utilizou-se as seguintes ferramentas:
 
 Para executar a aplicação inicie realizando o clone deste repositório com o comando abaixo.
 
-    git clone git@github.com:SHARENERGY-OFICIAL/desafio-sharenergy-2023-01.git
+    git clone git@github.com:larissaperinoto/desafio-sharenergy-2023-01.git
 
 Navegue até a raíz do projeto.
 
     cd desafio-sharenergy-2023-01/
-
-Entre na na branch `larissa-caroline-perinoto` com o comando abaixo
-
-    git checkout larissa-caroline-perinoto
 
 Suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
 
@@ -87,6 +85,21 @@ Para acessar os logs dos containers:
 - backend: `docker logs --details sharenergy_backend`
 - banco de dados `docker logs --details sharenergy_db`
 
+## Como logar na aplicação
+
+Acesse em seu navegador o endereço `localhost:3000` e clique em `Cadastrar` para cria uma conta. Na página de cadastro insira as credenciais a seguir:
+
+- Username: `desafiosharenergy`
+- Email: `sharenergy@email.com`
+- Senha: `sh@r3n3rgy`
+
+Em seguida, se direcione para a página de `Login` e faça o login na aplicação usando o username e senha cadastrados.
+
 ---
 
-Desenvolvido por [Larissa Perinoto](www.linkedin.com/in/larissaperinoto), © 2023.
+Desenvolvido por [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
+
+<div>
+    <a href = "mailto:perinotolarissa@gmail.com"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
+   <a href="http://www.linkedin.com/in/larissaperinoto" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+</div>
