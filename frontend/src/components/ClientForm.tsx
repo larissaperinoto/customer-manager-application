@@ -1,3 +1,10 @@
+import {
+  Button,
+  FormControl,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import IClient from "../interfaces/IClient";
 
@@ -5,12 +12,14 @@ type ClientFormProps = {
   handlePostClient: Function;
   clientToUpdate: IClient;
   handleUpdateClient: Function;
+  errorMessage: string;
 };
 
 export default function ClientForm({
   handlePostClient,
   clientToUpdate,
   handleUpdateClient,
+  errorMessage,
 }: ClientFormProps | any) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,75 +48,92 @@ export default function ClientForm({
   }, [clientToUpdate]);
 
   return (
-    <form>
-      <h2>Cadastrar novo cliente</h2>
-      <label htmlFor="name_input">
-        <input
+    <FormControl>
+      <Stack direction="column" spacing={1}>
+        <Typography variant="subtitle1" textAlign="center">
+          Cadastrar novo cliente
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          label="Nome"
+          variant="outlined"
+          size="small"
           type="text"
           value={name}
-          placeholder="Nome"
           onChange={(event) => setName(event.target.value)}
         />
-      </label>
-      <label htmlFor="email_input">
-        <input
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          size="small"
           type="email"
           value={email}
-          placeholder="Email"
           onChange={(event) => setEmail(event.target.value)}
         />
-      </label>
-      <label htmlFor="address_input">
-        <input
+        <TextField
+          id="outlined-basic"
+          label="Endereço"
+          variant="outlined"
+          size="small"
           type="text"
           value={address}
-          name="address"
-          placeholder="Address"
           onChange={(event) => setAddress(event.target.value)}
         />
-      </label>
-      <label htmlFor="cpf_input">
-        <input
+        <TextField
+          id="outlined-basic"
+          label="CPF"
+          variant="outlined"
+          size="small"
           type="number"
           value={cpf}
-          placeholder="CPF"
           onChange={(event) => setCpf(event.target.value)}
         />
-      </label>
-      <label htmlFor="phoneNumber_input">
-        <input
+        <TextField
+          helperText={errorMessage}
+          id="outlined-basic"
+          label="Telefone"
+          variant="outlined"
+          size="small"
           type="tel"
           value={phoneNumber}
-          placeholder="Telefone"
           onChange={(event) => setPhoneNumber(event.target.value)}
         />
-      </label>
-      {isToUpdate ? (
-        <button
-          type="submit"
-          onClick={(event) =>
-            handleUpdateClient(event, {
-              _id: clientToUpdate._id,
-              name,
-              email,
-              address,
-              cpf,
-              phoneNumber,
-            })
-          }
-        >
-          Atualizar
-        </button>
-      ) : (
-        <button
-          type="submit"
-          onClick={(event) =>
-            handlePostClient(event, { name, email, address, cpf, phoneNumber })
-          }
-        >
-          Cadastrar
-        </button>
-      )}
-    </form>
+        {isToUpdate ? (
+          <Button
+            type="submit"
+            variant="contained"
+            onClick={(event) =>
+              handleUpdateClient(event, {
+                _id: clientToUpdate._id,
+                name,
+                email,
+                address,
+                cpf,
+                phoneNumber,
+              })
+            }
+          >
+            Atualizar
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            variant="contained"
+            onClick={(event) =>
+              handlePostClient(event, {
+                name,
+                email,
+                address,
+                cpf,
+                phoneNumber,
+              })
+            }
+          >
+            Cadastrar
+          </Button>
+        )}
+      </Stack>
+    </FormControl>
   );
 }

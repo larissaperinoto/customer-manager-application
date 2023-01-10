@@ -11,6 +11,7 @@ import {
 import "../style/Clients.css";
 import IClient from "../interfaces/IClient";
 import FilterMessage from "../components/FilterMessage";
+import { Container, Grid, Stack, Typography } from "@mui/material";
 
 export default function Clients() {
   const [clients, setClients] = useState([] as any[]);
@@ -101,20 +102,23 @@ export default function Clients() {
   return (
     <>
       <Header />
-      <aside>
-        <div className="clients_form_container">
-          <ClientForm
-            handlePostClient={handlePostClient}
-            clientToUpdate={clientToUpdate}
-            handleUpdateClient={handleUpdateClient}
-          />
-          {errorMessage && <p>{errorMessage}</p>}
-        </div>
-        <SearchForm handleSearch={handleSearch} />
-        <FilterMessage filter={filter} requestAPI={requestAPI} />
-      </aside>
-      <section className="clients_section_container">
-        <div className="clients_container">
+      <Grid container spacing={2}>
+        <Grid item>
+          <Container>
+            <Stack direction={"column"}>
+              <ClientForm
+                handlePostClient={handlePostClient}
+                clientToUpdate={clientToUpdate}
+                handleUpdateClient={handleUpdateClient}
+                errorMessage={errorMessage}
+              />
+              <SearchForm handleSearch={handleSearch} />
+              <FilterMessage filter={filter} requestAPI={requestAPI} />
+            </Stack>
+          </Container>
+        </Grid>
+
+        <Grid item alignItems={"center"} justifyContent={"center"}>
           {clients.length ? (
             clients.map((client, index) => (
               <ClientCard
@@ -125,10 +129,12 @@ export default function Clients() {
               />
             ))
           ) : (
-            <p>Não há clientes para mostrar</p>
+            <Typography variant="body1" textAlign="center">
+              Não há clientes para mostrar
+            </Typography>
           )}
-        </div>
-      </section>
+        </Grid>
+      </Grid>
     </>
   );
 }
