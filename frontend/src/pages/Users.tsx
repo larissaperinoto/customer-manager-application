@@ -53,7 +53,9 @@ export default function Users() {
   return (
     <>
       <Header />
-      <SearchForm handleSearch={handleSearch} />
+      <Container maxWidth="lg">
+        <SearchForm handleSearch={handleSearch} />
+      </Container>
       <FilterMessage filter={filter} requestAPI={requestAPI} />
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         {currentItems.length ? (
