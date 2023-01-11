@@ -5,7 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register ./src/tests/**/**/*$NAME*.{test,spec}.ts -t 10000 --exit"
   },
   "keywords": [],
   "author": "",
@@ -14,8 +14,10 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
+    "@types/jest": "^29.2.5",
     "@types/jsonwebtoken": "^9.0.0",
     "@types/node": "^18.11.18",
+    "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "dotenv": "^16.0.3",
@@ -28,11 +30,15 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "joi": "^17.7.0",
     "joi-password": "^4.0.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.8.2"
+    "mocha": "^10.2.0",
+    "mongoose": "^6.8.2",
+    "sinon": "^15.0.1"
   }
 }
