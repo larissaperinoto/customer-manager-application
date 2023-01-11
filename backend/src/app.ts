@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerJson from "../swagger.json";
 import clientsRoutes from "./routes/clients.routes";
 import loginRoutes from "./routes/login.routes";
 import userRoutes from "./routes/user.routes";
@@ -17,6 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerJson));
 app.use("/login", loginRoutes);
 app.use("/user", userRoutes);
 app.use(authMiddleware);
