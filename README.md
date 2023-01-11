@@ -29,6 +29,8 @@ A aplicação desenvolvida conta com algumas páginas e funcionalidades, são el
     <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
     <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white" alt="Swagger" />
     <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="Material ui" />
+    <img src="https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white" alt="Mocha" />
+    <img src="https://img.shields.io/badge/chai-A30701?style=for-the-badge&logo=chai&logoColor=white" alt="Chai" />
 </div>
 
 <br>
@@ -54,10 +56,20 @@ Na elaboração deste projeto utilizou-se as seguintes ferramentas:
 - [JWT](https://jwt.io/)
 - Arquitetura Model-Service-Controller
 
+### Testes
+
+- [Mocha](https://mochajs.org/)
+- [Sinon](https://sinonjs.org/)
+- [Chai](https://www.chaijs.com/)
+
 ### Alinhamento de código
 
 - [ESlint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+
+### Documentação
+
+- [Swagger](https://swagger.io/)
 
 ### APIs externas
 
@@ -75,7 +87,14 @@ Navegue até a raíz do projeto.
 
     cd desafio-sharenergy-2023-01/
 
-Suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
+Execute nas pastas backend e, posteriomente, na pasta frontend o comando para instalar as dependencias do projetos.
+
+    cd backend && npm install
+    cd ..
+    cd frontend && npm install
+    cd ..
+
+Novamente na raíz do projeto, suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
 
     docker-compose up -d
 
@@ -94,6 +113,17 @@ Acesse em seu navegador o endereço `localhost:3000` e clique em `Cadastrar` par
 - Senha: `sh@r3n3rgy`
 
 Em seguida, se direcione para a página de `Login` e faça o login na aplicação usando o username e senha cadastrados.
+
+## Documentação da API
+
+Para acessar a documentação da API acesse no seu navegador o endereço `localhost:3000/docs` após seguir os passos de execução do projeto como descritos no tópico Execução.
+
+<details>
+<summary>Prévia da documentação</summary>
+
+![Captura de tela de 2023-01-11 11-40-38](https://user-images.githubusercontent.com/98956659/211838104-d92da152-8ecf-4faa-9c18-3a2c832915a9.png)
+
+</details>
 
 ---
 
