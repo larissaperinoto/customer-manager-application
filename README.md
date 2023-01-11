@@ -106,7 +106,7 @@ Para acessar os logs dos containers:
 
 ## Como logar na aplicação
 
-Acesse em seu navegador o endereço `localhost:3000` e clique em `Cadastrar` para cria uma conta. Na página de cadastro insira as credenciais a seguir:
+Acesse em seu navegador no endereço `localhost:3000` e clique em `Cadastrar` para cria uma conta. Na página de cadastro insira as credenciais a seguir:
 
 - Username: `desafiosharenergy`
 - Email: `sharenergy@email.com`
@@ -116,7 +116,7 @@ Em seguida, se direcione para a página de `Login` e faça o login na aplicaçã
 
 ## Documentação da API
 
-Para acessar a documentação da API acesse no seu navegador o endereço `localhost:3000/docs` após seguir os passos de execução do projeto como descritos no tópico Execução.
+Para acessar a documentação da API acesse no seu navegador o endereço `localhost:3001/docs` após seguir os passos de execução do projeto como descritos no tópico Execução.
 
 <details>
 <summary>Prévia da documentação</summary>
@@ -124,6 +124,12 @@ Para acessar a documentação da API acesse no seu navegador o endereço `localh
 ![Captura de tela de 2023-01-11 11-40-38](https://user-images.githubusercontent.com/98956659/211838104-d92da152-8ecf-4faa-9c18-3a2c832915a9.png)
 
 </details>
+
+## Explicando a aplicação
+
+Acessem o breve vídeo explicativo sobre as funcionalidades e como utlizar a aplicação.
+
+[![Watch the video](https://user-images.githubusercontent.com/98956659/211910752-da9902f8-03ac-4d39-8c3a-5f9fa0d4c5c8.png)](https://youtu.be/x39Nhq84JKs)
 
 ---
 
