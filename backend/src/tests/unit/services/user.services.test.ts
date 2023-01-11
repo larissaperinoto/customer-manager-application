@@ -8,14 +8,14 @@ import UserModel from "../../../models/User.model";
 import userService from "../../../services/user.service";
 import jsonwebtoken from "jsonwebtoken";
 import ILogin from "../../../interfaces/ILogin";
-import IUser from "../../../interfaces/ILogin";
+import IUser from "../../../interfaces/IUser";
 import { userMock, token } from "./mocks/user.mock";
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe("Testa a rota /login", () => {
+describe("Testa a rota /login e /user", () => {
   afterEach(function () {
     sinon.restore();
   });
