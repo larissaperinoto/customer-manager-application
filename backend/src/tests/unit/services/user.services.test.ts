@@ -9,7 +9,7 @@ import userService from "../../../services/user.service";
 import jsonwebtoken from "jsonwebtoken";
 import ILogin from "../../../interfaces/ILogin";
 import IUser from "../../../interfaces/IUser";
-import { userMock, token } from "./mocks/user.mock";
+import { userMockFromDB, token, login } from "../../mocks/user.mock";
 
 chai.use(chaiHttp);
 
@@ -22,30 +22,22 @@ describe("Testa a rota /login e /user", () => {
 
   describe("Testa método POST na rota /login", () => {
     it("Usuário consegue fazer login com sucesso", async () => {
-      sinon.stub(UserModel, "findOne").resolves(userMock as IUser);
+      sinon.stub(UserModel, "findOne").resolves(userMockFromDB as IUser);
       sinon.stub(jsonwebtoken, "sign").resolves(token);
 
-      const credentials = {
-        username: "admin",
-        password: "senha123",
-      };
-
-      const response = await userService.login(credentials as ILogin);
+      const response = await userService.login(login as ILogin);
       expect(response).to.be.equal(token);
     });
   });
 
   describe("Testa método POST na rota /user", () => {
     it("Usuário consegue se cadastrar com sucesso", async () => {
-      sinon.stub(UserModel, "create").resolves(userMock as IUser);
+      sinon.stub(UserModel, "create").resolves(userMockFromDB as IUser);
 
-      const credentials = {
+      const response = await userService.create({
+        ...login,
         email: "admin@email.com",
-        username: "admin",
-        password: "senha123",
-      };
-
-      const response = await userService.create(credentials as ILogin);
+      } as ILogin);
       expect(response).to.be.equal("admin created successfully");
     });
   });

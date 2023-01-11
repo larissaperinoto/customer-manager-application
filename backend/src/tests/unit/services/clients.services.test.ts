@@ -5,7 +5,7 @@ import chai from "chai";
 import chaiHttp = require("chai-http");
 
 import clientService from "../../../services/clients.service";
-import { clientsMock } from "./mocks/clients.mock";
+import { clientsMock } from "../../mocks/clients.mock";
 import ClientModel from "../../../models/Client.model";
 import IClient from "../../../interfaces/IClient";
 
