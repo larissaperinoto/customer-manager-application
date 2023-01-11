@@ -6,7 +6,7 @@ import chaiHttp = require("chai-http");
 
 import app from "../../app";
 import jsonwebtoken from "jsonwebtoken";
-import IClient from "../../interfaces/IClient";
+import IUser from "../../interfaces/IUser";
 import { login, userMockFromDB, token } from "../mocks/user.mock";
 import UserModel from "../../models/User.model";
 
@@ -23,7 +23,7 @@ describe("Testes de integração nas rota /user e /login", () => {
     it("Usuário consegue fazer login com sucesso", async () => {
       sinon
         .stub(UserModel, "findOne")
-        .resolves(userMockFromDB as unknown as IClient);
+        .resolves(userMockFromDB as unknown as IUser);
       sinon.stub(jsonwebtoken, "sign").resolves(token);
 
       const response = await chai.request(app).post("/login").send(login);

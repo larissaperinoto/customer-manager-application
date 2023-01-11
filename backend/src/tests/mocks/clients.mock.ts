@@ -16,3 +16,11 @@ export const clientsMock = [
     cpf: 3434535345,
   },
 ];
+
+export const clientPost = {
+  name: "nome2",
+  email: "test@email.com",
+  phoneNumber: "3123432",
+  address: "Endereço 2",
+  cpf: 3434535345,
+};
