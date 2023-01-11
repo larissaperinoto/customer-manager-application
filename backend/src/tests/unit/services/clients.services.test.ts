@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe("Testa camada service para a rota /client", () => {
+describe("Testes de unidade para a camada service na rota /client", () => {
   afterEach(function () {
     sinon.restore();
   });
