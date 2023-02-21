@@ -1,5 +1,5 @@
 import axios from "axios";
-import IClient from "../interfaces/IClient";
+import IClient from "../interfaces/ICustomer";
 import ILogin from "../interfaces/ILogin";
 
 const api = axios.create({
@@ -15,16 +15,16 @@ export async function postAPI(endpoint: string, body: ILogin | IClient) {
   return data;
 }
 
-export async function deleteFromDB(clientId: string) {
-  await api.delete(`/clients/${clientId}`);
+export async function deleteFromDB(customerId: string) {
+  await api.delete(`/customers/${customerId}`);
 }
 
-export async function updateAPI(clientId: string, body: IClient) {
-  await api.put(`/clients/${clientId}`, body);
+export async function updateAPI(customerId: string, body: IClient) {
+  await api.put(`/customers/${customerId}`, body);
 }
 
-export async function requestClients() {
-  const { data } = await api.get("clients");
+export async function requestCustomers() {
+  const { data } = await api.get("customers");
   return data;
 }
 
@@ -32,10 +32,4 @@ export async function requestUsers() {
   const fetchApi = await fetch("https://randomuser.me/api/?results=50");
   const { results } = await fetchApi.json();
   return results;
-}
-
-export async function requestDogs() {
-  const fetchApi = await fetch("https://random.dog/woof.json");
-  const { url } = await fetchApi.json();
-  return url;
 }

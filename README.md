@@ -1,18 +1,19 @@
-# Desafio SHARENERGY 2023/01
+# Customer Manager Application
 
-## Objetivo
+## Description
 
-A aplicação desenvolvida conta com algumas páginas e funcionalidades, são elas:
+Customer Manager is a application to manage clients and allows to organize a business service sector, for example.
 
-- Login do usuário
-- Cadastro de novos usuários
-- Consumo de APIs externas
-- Visualização dos clientes cadastrados no banco
-- Atualização de clientes
-- Cadastro de novos clientes
-- Remoção de clientes
+The application have some functionalities:
 
-## Tecnologias e Ferramentas
+- User login verification
+- Register new users
+- Access customers from the database
+- Update customers information
+- Register new customers
+- Delete customers
+
+## Technologies and Tools
 
 <div>
    <img src='https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white' alt='HTML' />
@@ -35,7 +36,7 @@ A aplicação desenvolvida conta com algumas páginas e funcionalidades, são el
 
 <br>
 
-Na elaboração deste projeto utilizou-se as seguintes ferramentas:
+This project was developed using the following tools and technologies:
 
 ### Front-end
 
@@ -56,84 +57,71 @@ Na elaboração deste projeto utilizou-se as seguintes ferramentas:
 - [JWT](https://jwt.io/)
 - Arquitetura Model-Service-Controller
 
-### Testes
+### Tests
 
 - [Mocha](https://mochajs.org/)
 - [Sinon](https://sinonjs.org/)
 - [Chai](https://www.chaijs.com/)
 
-### Alinhamento de código
+### Code alignment
 
 - [ESlint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 
-### Documentação
+### Documentation
 
 - [Swagger](https://swagger.io/)
 
-### APIs externas
+### External APIs
 
 - [Random User Generator](https://randomuser.me/)
-- [HTTP Cat](https://http.cat/)
-- [Random Dog](https://random.dog/)
 
-## ⚙️ Execução
+## ⚙️ How to run
 
-Para executar a aplicação inicie realizando o clone deste repositório com o comando abaixo.
+To run this application start cloning this repository using the following command.
 
-    git clone git@github.com:larissaperinoto/desafio-sharenergy-2023-01.git
+    git clone git@github.com:larissaperinoto/customer-manager-application.git
 
-Navegue até a raíz do projeto.
+Navigate to the root folder of the project.
 
-    cd desafio-sharenergy-2023-01/
+    cd customer-manager-application/
 
-Execute nas pastas backend e, posteriomente, na pasta frontend o comando para instalar as dependencias do projetos.
+Install the project dependencies using the following command sequence.
 
     cd backend && npm install
     cd ..
     cd frontend && npm install
     cd ..
 
-Novamente na raíz do projeto, suba os containers do **sharenergy_frontend**, **sharenergy_backend** e **sharenergy_db** com o comando abaixo
+In the root of the project, upload the containers of **customer_manager_frontend**, **customer_manager_backend** and **customer_manager_db** with the following command.
 
     docker-compose up -d
 
-Para acessar os logs dos containers:
+Acess the containers logs:
 
-- frontend: `docker logs --details sharenergy_frontend`
-- backend: `docker logs --details sharenergy_backend`
-- banco de dados `docker logs --details sharenergy_db`
+  - frontend: `docker logs --details customer_manager_frontend`
+  - backend: `docker logs --details customer_manager_backend`
+  - banco de dados `docker logs --details customer_manager_db`
 
-## Como logar na aplicação
+## How to login
 
-Acesse em seu navegador no endereço `localhost:3000` e clique em `Cadastrar` para cria uma conta. Na página de cadastro insira as credenciais a seguir:
+Go to `localhost:3000` in your browser and click on `Register` to create an account. After creating an account, go to the `Login` page and login to the application using the registered username and password.
 
-- Username: `desafiosharenergy`
-- Email: `sharenergy@email.com`
-- Senha: `sh@r3n3rgy`
+## API documentation
 
-Em seguida, se direcione para a página de `Login` e faça o login na aplicação usando o username e senha cadastrados.
-
-## Documentação da API
-
-Para acessar a documentação da API acesse no seu navegador o endereço `localhost:3001/docs` após seguir os passos de execução do projeto como descritos no tópico Execução.
+To access the API documentation, go to `localhost:3001/docs` in your browser after following the project execution steps as described in the "How to run" topic.
 
 <details>
-<summary>Prévia da documentação</summary>
+<summary>Documentation preview</summary>
 
-![Captura de tela de 2023-01-11 11-40-38](https://user-images.githubusercontent.com/98956659/211838104-d92da152-8ecf-4faa-9c18-3a2c832915a9.png)
+![Captura de tela de 2023-02-21 13-54-41](https://user-images.githubusercontent.com/98956659/220409913-e9a2232b-2f3d-4ab7-b310-4bcca8ec8e42.png)
+
 
 </details>
 
-## Explicando a aplicação
-
-Acessem o breve vídeo explicativo sobre as funcionalidades e como utlizar a aplicação.
-
-[![Watch the video](https://user-images.githubusercontent.com/98956659/211910752-da9902f8-03ac-4d39-8c3a-5f9fa0d4c5c8.png)](https://youtu.be/x39Nhq84JKs)
-
 ---
 
-Desenvolvido por [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
+Deelop by [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
 
 <div>
     <a href = "mailto:perinotolarissa@gmail.com"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>

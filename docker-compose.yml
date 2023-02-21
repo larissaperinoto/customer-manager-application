@@ -2,7 +2,7 @@ version: "3"
 services:
   frontend:
     build: ./frontend
-    container_name: sharenergy_frontend
+    container_name: customer_manager_frontend
     tty: true
     stdin_open: true
     restart: always
@@ -14,13 +14,13 @@ services:
     ports:
       - 3000:3000
     networks:
-      - sharenergy_client
+      - customer_manager_client
     environment:
       API_PORT: 3001
 
   backend:
     build: ./backend
-    container_name: sharenergy_backend
+    container_name: customer_manager_backend
     tty: true
     stdin_open: true
     command: bash
@@ -33,24 +33,24 @@ services:
     ports:
       - 3001:3001
     networks:
-      - sharenergy_db
-      - sharenergy_client
+      - customer_manager_db
+      - customer_manager_client
     environment:
-      MONGO_URI: mongodb://mongodb:27017/sharenergy
+      MONGO_URI: mongodb://mongodb:27017/customer_manager
       SERVER_PORT: 3001
       JWT_SECRET: mysecret
 
   mongodb:
     image: mongo:5.0.7
-    container_name: sharenergy_db
+    container_name: customer_manager_db
     volumes:
       - ./:/app
     restart: always
     ports:
       - 27017:27017
     networks:
-      - sharenergy_db
+      - customer_manager_db
 
 networks:
-  sharenergy_db:
-  sharenergy_client:
+  customer_manager_db:
+  customer_manager_client:

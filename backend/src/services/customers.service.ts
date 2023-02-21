@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import IClient from "../interfaces/IClient";
 import Client from "../models/Client.model";
 
-class ClientService {
+class customerservice {
   async findAll() {
     return await Client.find({});
   }
@@ -35,4 +35,4 @@ class ClientService {
   }
 }
 
-export default new ClientService();
+export default new customerservice();

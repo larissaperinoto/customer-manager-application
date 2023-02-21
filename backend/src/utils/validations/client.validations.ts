@@ -3,7 +3,7 @@ import IClient from "../../interfaces/IClient";
 
 const fieldsMissingMessage = "Some required fields are missing";
 
-const clientSchema = Joi.object({
+const customerschema = Joi.object({
   name: Joi.string().min(3).required().messages({
     "string.empty": fieldsMissingMessage,
     "string.min": '"name" length must be at least 3 characters long',
@@ -29,6 +29,6 @@ const clientSchema = Joi.object({
 });
 
 export default function validateClientFields(body: IClient) {
-  const { error } = clientSchema.validate(body);
+  const { error } = customerschema.validate(body);
   if (error) return error.details[0].message;
 }
