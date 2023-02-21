@@ -23,7 +23,7 @@ export async function updateAPI(customerId: string, body: IClient) {
   await api.put(`/customers/${customerId}`, body);
 }
 
-export async function requestcustomers() {
+export async function requestCustomers() {
   const { data } = await api.get("customers");
   return data;
 }
@@ -32,10 +32,4 @@ export async function requestUsers() {
   const fetchApi = await fetch("https://randomuser.me/api/?results=50");
   const { results } = await fetchApi.json();
   return results;
-}
-
-export async function requestDogs() {
-  const fetchApi = await fetch("https://random.dog/woof.json");
-  const { url } = await fetchApi.json();
-  return url;
 }

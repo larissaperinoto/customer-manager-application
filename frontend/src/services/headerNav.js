@@ -1,18 +1,10 @@
 const headerNav = [
   {
-    label: "Users",
+    label: "Usuários",
     href: "/users",
   },
   {
-    label: "Dogs",
-    href: "/dogs",
-  },
-  {
-    label: "Cats",
-    href: "/cats",
-  },
-  {
-    label: "customers",
+    label: "Clientes",
     href: "/customers",
   },
 ]

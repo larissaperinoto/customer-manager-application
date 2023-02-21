@@ -2,7 +2,7 @@ import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
 import { CustomerCard, CustomerForm, Header, SearchForm } from "../components";
 import {
-  requestcustomers,
+  requestCustomers,
   setToken,
   postAPI,
   deleteFromDB,
@@ -20,7 +20,7 @@ export default function Customers() {
   const [filter, setFilter] = useState("" as string);
 
   async function requestAPI() {
-    const customersList = await requestcustomers();
+    const customersList = await requestCustomers();
     setCustomers(customersList);
     setFilter("");
   }
