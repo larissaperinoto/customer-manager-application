@@ -1,4 +1,4 @@
-export const clientsMock = [
+export const customersMock = [
   {
     _id: "63be97f50881f74eed44680d",
     name: "nome1",

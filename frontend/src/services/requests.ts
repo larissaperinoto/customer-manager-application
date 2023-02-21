@@ -15,16 +15,16 @@ export async function postAPI(endpoint: string, body: ILogin | IClient) {
   return data;
 }
 
-export async function deleteFromDB(clientId: string) {
-  await api.delete(`/clients/${clientId}`);
+export async function deleteFromDB(customerId: string) {
+  await api.delete(`/customers/${customerId}`);
 }
 
-export async function updateAPI(clientId: string, body: IClient) {
-  await api.put(`/clients/${clientId}`, body);
+export async function updateAPI(customerId: string, body: IClient) {
+  await api.put(`/customers/${customerId}`, body);
 }
 
-export async function requestClients() {
-  const { data } = await api.get("clients");
+export async function requestcustomers() {
+  const { data } = await api.get("customers");
   return data;
 }
 

@@ -2,26 +2,26 @@ import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
 import { ClientCard, ClientForm, Header, SearchForm } from "../components";
 import {
-  requestClients,
+  requestcustomers,
   setToken,
   postAPI,
   deleteFromDB,
   updateAPI,
 } from "../services/requests";
-import "../style/Clients.css";
+import "../style/customers.css";
 import IClient from "../interfaces/IClient";
 import FilterMessage from "../components/FilterMessage";
 import { Container, Grid, Stack, Typography } from "@mui/material";
 
-export default function Clients() {
-  const [clients, setClients] = useState([] as any[]);
+export default function customers() {
+  const [customers, setcustomers] = useState([] as any[]);
   const [errorMessage, setErrorMessage] = useState("" as string);
   const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
   const [filter, setFilter] = useState("" as string);
 
   async function requestAPI() {
-    const clients = await requestClients();
-    setClients(clients);
+    const customers = await requestcustomers();
+    setcustomers(customers);
     setFilter("");
   }
 
@@ -50,7 +50,7 @@ export default function Clients() {
     event.preventDefault();
 
     try {
-      await postAPI("/clients", {
+      await postAPI("/customers", {
         name,
         email,
         address,
@@ -92,10 +92,10 @@ export default function Clients() {
   }, [errorMessage]);
 
   function handleSearch(searchBy: string, searchTerm: string) {
-    const clientsFiltered = clients.filter((user) =>
+    const customersFiltered = customers.filter((user) =>
       user[`${searchBy}`].includes(searchTerm)
     );
-    setClients(clientsFiltered);
+    setcustomers(customersFiltered);
     setFilter(`Resultados para ${searchTerm}`);
   }
 
@@ -120,8 +120,8 @@ export default function Clients() {
 
         <Grid item alignItems={"center"} justifyContent={"center"}>
           <Grid container alignItems={"center"} justifyContent={"center"}>
-            {clients.length ? (
-              clients.map((client, index) => (
+            {customers.length ? (
+              customers.map((client, index) => (
                 <ClientCard
                   client={client}
                   handleDeleteClient={handleDeleteClient}

@@ -5,7 +5,7 @@ import { config } from "dotenv";
 config();
 
 mongoose.connect(
-  process.env.MONGO_URI || "mongodb://localhost:27017/sharenergy"
+  process.env.MONGO_URI || "mongodb://localhost:27017/customer_manager"
 );
 
 const PORT = process.env.SERVER_PORT || 3001;

@@ -4,8 +4,8 @@ import chai from "chai";
 // @ts-ignore
 import chaiHttp = require("chai-http");
 
-import clientService from "../../../services/clients.service";
-import { clientsMock } from "../../mocks/clients.mock";
+import customerservice from "../../../services/customers.service";
+import { customersMock } from "../../mocks/customers.mock";
 import ClientModel from "../../../models/Client.model";
 import IClient from "../../../interfaces/IClient";
 
@@ -18,51 +18,51 @@ describe("Testes de unidade para a camada service na rota /client", () => {
     sinon.restore();
   });
 
-  describe("Testa método GET na rota /clients", () => {
+  describe("Testa método GET na rota /customers", () => {
     it("É possível buscar todos os clientes", async () => {
       sinon
         .stub(ClientModel, "find")
-        .resolves(clientsMock as unknown as IClient[]);
+        .resolves(customersMock as unknown as IClient[]);
 
-      const response = await clientService.findAll();
-      expect(response).to.be.equal(clientsMock);
+      const response = await customerservice.findAll();
+      expect(response).to.be.equal(customersMock);
     });
   });
 
-  describe("Testa método POST na rota /clients", () => {
+  describe("Testa método POST na rota /customers", () => {
     it("É possível cadastrar um cliente com sucesso", async () => {
       sinon
         .stub(ClientModel, "create")
-        .resolves(clientsMock[0] as unknown as IClient);
+        .resolves(customersMock[0] as unknown as IClient);
 
-      const response = await clientService.create(
-        clientsMock[0] as unknown as IClient
+      const response = await customerservice.create(
+        customersMock[0] as unknown as IClient
       );
-      expect(response).to.be.equal(clientsMock[0]);
+      expect(response).to.be.equal(customersMock[0]);
     });
   });
 
-  describe("Testa método PUT na rota /clients", () => {
+  describe("Testa método PUT na rota /customers", () => {
     it("É possível atualizar um cliente com sucesso", async () => {
       sinon.stub(ClientModel, "updateOne").resolves();
 
-      const id = clientsMock[0]._id;
+      const id = customersMock[0]._id;
 
-      const response = await clientService.updateById(
+      const response = await customerservice.updateById(
         id,
-        clientsMock[0] as unknown as IClient
+        customersMock[0] as unknown as IClient
       );
       expect(response).to.be.equal(undefined);
     });
   });
 
-  describe("Testa método DELETE na rota /clients", () => {
+  describe("Testa método DELETE na rota /customers", () => {
     it("É possível deletar um cliente com sucesso", async () => {
       sinon.stub(ClientModel, "deleteOne").resolves();
 
-      const id = clientsMock[0]._id;
+      const id = customersMock[0]._id;
 
-      const response = await clientService.delete(id);
+      const response = await customerservice.delete(id);
       expect(response).to.be.equal(undefined);
     });
   });
