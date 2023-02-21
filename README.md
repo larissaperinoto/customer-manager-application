@@ -121,7 +121,7 @@ To access the API documentation, go to `localhost:3001/docs` in your browser aft
 
 ---
 
-Deelop by [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
+Developed by [Larissa Perinoto](https://larissaperinoto.com.br/), © 2023.
 
 <div>
     <a href = "mailto:perinotolarissa@gmail.com"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
