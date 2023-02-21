@@ -1,5 +1,5 @@
 import axios from "axios";
-import IClient from "../interfaces/IClient";
+import IClient from "../interfaces/ICustomer";
 import ILogin from "../interfaces/ILogin";
 
 const api = axios.create({

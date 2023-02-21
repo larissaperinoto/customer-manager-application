@@ -1,6 +1,6 @@
 import { useEffect, useState, MouseEvent } from "react";
 import { AxiosError } from "axios";
-import { ClientCard, ClientForm, Header, SearchForm } from "../components";
+import { CustomerCard, CustomerForm, Header, SearchForm } from "../components";
 import {
   requestcustomers,
   setToken,
@@ -8,20 +8,20 @@ import {
   deleteFromDB,
   updateAPI,
 } from "../services/requests";
-import "../style/customers.css";
-import IClient from "../interfaces/IClient";
+import "../style/Customers.css";
+import ICustomer from "../interfaces/ICustomer";
 import FilterMessage from "../components/FilterMessage";
 import { Container, Grid, Stack, Typography } from "@mui/material";
 
-export default function customers() {
-  const [customers, setcustomers] = useState([] as any[]);
+export default function Customers() {
+  const [customers, setCustomers] = useState([] as any[]);
   const [errorMessage, setErrorMessage] = useState("" as string);
-  const [clientToUpdate, setClientToUpdate] = useState({} as IClient);
+  const [customerToUpdate, setCustomerToUpdate] = useState({} as ICustomer);
   const [filter, setFilter] = useState("" as string);
 
   async function requestAPI() {
-    const customers = await requestcustomers();
-    setcustomers(customers);
+    const customersList = await requestcustomers();
+    setCustomers(customersList);
     setFilter("");
   }
 
@@ -31,7 +31,7 @@ export default function customers() {
     requestAPI();
   }, []);
 
-  async function handleDeleteClient(event: MouseEvent, id: string) {
+  async function handleDeleteCustomer(event: MouseEvent, id: string) {
     event.preventDefault();
     try {
       await deleteFromDB(id);
@@ -43,9 +43,9 @@ export default function customers() {
     }
   }
 
-  async function handlePostClient(
+  async function handlePostCustomer(
     event: MouseEvent,
-    { name, email, address, phoneNumber, cpf }: IClient
+    { name, email, address, phoneNumber, cpf }: ICustomer
   ) {
     event.preventDefault();
 
@@ -65,9 +65,9 @@ export default function customers() {
     }
   }
 
-  async function handleUpdateClient(event: MouseEvent, client: IClient) {
+  async function handleUpdateCustomer(event: MouseEvent, customer: ICustomer) {
     event.preventDefault();
-    const { _id, name, email, phoneNumber, address, cpf } = client;
+    const { _id, name, email, phoneNumber, address, cpf } = customer;
     try {
       await updateAPI(_id as string, {
         name,
@@ -77,7 +77,7 @@ export default function customers() {
         cpf,
       });
       requestAPI();
-      setClientToUpdate({} as IClient);
+      setCustomerToUpdate({} as ICustomer);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setErrorMessage(error.response?.data.message);
@@ -95,7 +95,7 @@ export default function customers() {
     const customersFiltered = customers.filter((user) =>
       user[`${searchBy}`].includes(searchTerm)
     );
-    setcustomers(customersFiltered);
+    setCustomers(customersFiltered);
     setFilter(`Resultados para ${searchTerm}`);
   }
 
@@ -106,10 +106,10 @@ export default function customers() {
         <Grid item>
           <Container>
             <Stack direction={"column"}>
-              <ClientForm
-                handlePostClient={handlePostClient}
-                clientToUpdate={clientToUpdate}
-                handleUpdateClient={handleUpdateClient}
+              <CustomerForm
+                handlePostCustomer={handlePostCustomer}
+                customerToUpdate={customerToUpdate}
+                handleUpdateCustomer={handleUpdateCustomer}
                 errorMessage={errorMessage}
               />
               <SearchForm handleSearch={handleSearch} />
@@ -121,11 +121,11 @@ export default function customers() {
         <Grid item alignItems={"center"} justifyContent={"center"}>
           <Grid container alignItems={"center"} justifyContent={"center"}>
             {customers.length ? (
-              customers.map((client, index) => (
-                <ClientCard
-                  client={client}
-                  handleDeleteClient={handleDeleteClient}
-                  setClientToUpdate={setClientToUpdate}
+              customers.map((customer, index) => (
+                <CustomerCard
+                  customer={customer}
+                  handleDeleteCustomer={handleDeleteCustomer}
+                  setCustomerToUpdate={setCustomerToUpdate}
                   key={index}
                 />
               ))

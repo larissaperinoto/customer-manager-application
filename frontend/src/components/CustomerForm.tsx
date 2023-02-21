@@ -6,21 +6,21 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import IClient from "../interfaces/IClient";
+import ICustomer from "../interfaces/ICustomer";
 
-type ClientFormProps = {
-  handlePostClient: Function;
-  clientToUpdate: IClient;
-  handleUpdateClient: Function;
+type CustomerFormProps = {
+  handlePostCustomer: Function;
+  customerToUpdate: ICustomer;
+  handleUpdateCustomer: Function;
   errorMessage: string;
 };
 
-export default function ClientForm({
-  handlePostClient,
-  clientToUpdate,
-  handleUpdateClient,
+export default function CustomerForm({
+  handlePostCustomer,
+  customerToUpdate,
+  handleUpdateCustomer,
   errorMessage,
-}: ClientFormProps | any) {
+}: CustomerFormProps | any) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -29,9 +29,9 @@ export default function ClientForm({
   const [isToUpdate, setIsToUpdate] = useState(false);
 
   useEffect(() => {
-    if (clientToUpdate.name) {
+    if (customerToUpdate.name) {
       setIsToUpdate(true);
-      const { name, email, phoneNumber, address, cpf } = clientToUpdate;
+      const { name, email, phoneNumber, address, cpf } = customerToUpdate;
       setName(name);
       setEmail(email);
       setAddress(address);
@@ -45,13 +45,13 @@ export default function ClientForm({
       setCpf("");
       setPhoneNumber("");
     }
-  }, [clientToUpdate]);
+  }, [customerToUpdate]);
 
   return (
     <FormControl>
       <Stack direction="column" spacing={1}>
         <Typography variant="subtitle1" textAlign="center">
-          Cadastrar novo cliente
+          Cadastrar novo cliene
         </Typography>
         <TextField
           id="outlined-basic"
@@ -104,8 +104,8 @@ export default function ClientForm({
             type="submit"
             variant="contained"
             onClick={(event) =>
-              handleUpdateClient(event, {
-                _id: clientToUpdate._id,
+              handleUpdateCustomer(event, {
+                _id: customerToUpdate._id,
                 name,
                 email,
                 address,
@@ -121,7 +121,7 @@ export default function ClientForm({
             type="submit"
             variant="contained"
             onClick={(event) =>
-              handlePostClient(event, {
+              handlePostCustomer(event, {
                 name,
                 email,
                 address,

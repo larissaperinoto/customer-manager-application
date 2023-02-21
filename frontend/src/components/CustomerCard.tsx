@@ -1,18 +1,18 @@
 import { Button, Card, Stack, Typography } from "@mui/material";
-import IClient from "../interfaces/IClient";
+import ICustomer from "../interfaces/ICustomer";
 
-type ClientCardProps = {
-  client: IClient;
-  handleDeleteClient: Function;
-  setClientToUpdate: Function;
+type CustomerCardProps = {
+  Customer: ICustomer;
+  handleDeleteCustomer: Function;
+  setCustomerToUpdate: Function;
 };
 
-export default function ClientCard({
-  client,
-  handleDeleteClient,
-  setClientToUpdate,
-}: ClientCardProps | any) {
-  const { _id, name, email, phoneNumber, address, cpf } = client;
+export default function CustomerCard({
+  customer,
+  handleDeleteCustomer,
+  setCustomerToUpdate,
+}: CustomerCardProps | any) {
+  const { _id, name, email, phoneNumber, address, cpf } = customer;
 
   return (
     <Card sx={{ padding: 5, margin: 1 }}>
@@ -41,7 +41,7 @@ export default function ClientCard({
           variant="contained"
           color="secondary"
           size="small"
-          onClick={() => setClientToUpdate(client)}
+          onClick={() => setCustomerToUpdate(customer)}
         >
           Atualizar
         </Button>
@@ -50,7 +50,7 @@ export default function ClientCard({
           variant="contained"
           color="warning"
           size="small"
-          onClick={(event) => handleDeleteClient(event, _id)}
+          onClick={(event) => handleDeleteCustomer(event, _id)}
         >
           Deletar
         </Button>
