@@ -1,0 +1,335 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Desafio Sharenergy API",
+    "description": "Esta API faz parte do desafio técnico da Sharenergy e oferece opções de criar, atualizar, buscar e deletar clientes, além de realizar login e cadastro de novos usuários",
+    "contact": {
+      "url": "https://larissaperinoto.com.br/",
+      "email": "perinotolarissa@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login do usuário",
+        "description": "Permite ao usuário logar na aplicação uma vez que seja cadastrado",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "username": "desafiosharenergy",
+                    "password": "sh@r3n3rgy"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "400": {
+            "description": "Some required fields are missing"
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "Cadastra um novo usuário",
+        "description": "Cadastra um novo usuário na aplicação, permitindo que ele faça o login posteriormente",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "username": "admin",
+                    "email": "admin@email.com",
+                    "password": "senha123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "content": "'username' created successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Some required fields are missing"
+          }
+        }
+      }
+    },
+    "/clients": {
+      "post": {
+        "summary": "Cadastro de novos clientes",
+        "description": "Permite ao usuário autorizado cadastrar novos clientes no banco de dados",
+        "tags": ["Clients"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "number"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "email": "maria@email.com",
+                    "name": "Maria",
+                    "password": "sh@senha123",
+                    "phoneNumer": 3452234565,
+                    "cpf": 68723312478,
+                    "address": "rua XV, 23"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "400": {
+            "description": "Some required fields are missing"
+          }
+        }
+      },
+      "get": {
+        "summary": "Busca por todos os clientes",
+        "description": "Permite ao usuário visualizar todos os clientes cadastrados no banco de dados",
+        "tags": ["Clients"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        }
+      }
+    },
+    "/clients/:id": {
+      "put": {
+        "summary": "Cadastro de novos clientes",
+        "description": "Permite ao usuário autorizado cadastrar novos clientes no banco de dados",
+        "tags": ["Clients"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id do cliente que terá os dados atualizados",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "number"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "email": "maria@email.com",
+                    "name": "Maria",
+                    "password": "sh@senha123",
+                    "phoneNumer": 3452234565,
+                    "cpf": 68723312478,
+                    "address": "rua XV, 23"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          },
+          "400": {
+            "description": "Some required fields are missing"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove clientes do banco de dados",
+        "description": "Permite ao usuário autorizado remover clientes no banco de dados",
+        "tags": ["Clients"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id do cliente que terá os dados apagados",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "content": {
+              "aplication/json": {}
+            }
+          },
+          "401": {
+            "description": "Unauthorized user"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Client": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "number"
+          },
+          "address": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

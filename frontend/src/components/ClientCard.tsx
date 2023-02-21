@@ -1,5 +1,5 @@
+import { Button, Card, Stack, Typography } from "@mui/material";
 import IClient from "../interfaces/IClient";
-import "../style/ClientCard.css";
 
 type ClientCardProps = {
   client: IClient;
@@ -15,23 +15,46 @@ export default function ClientCard({
   const { _id, name, email, phoneNumber, address, cpf } = client;
 
   return (
-    <div className="client_card">
-      <h3>{name}</h3>
-      <p>{email}</p>
-      <p>{phoneNumber}</p>
-      <p>{address}</p>
-      <p>{cpf}</p>
-      <div>
-        <button type="button" onClick={() => setClientToUpdate(client)}>
+    <Card sx={{ padding: 5, margin: 1 }}>
+      <Typography
+        variant="h2"
+        textAlign="center"
+        sx={{ fontSize: 25, fontWeight: 600 }}
+      >
+        {name}
+      </Typography>
+      <Typography variant="body1" textAlign="center">
+        {email}
+      </Typography>
+      <Typography variant="body1" textAlign="center">
+        {phoneNumber}
+      </Typography>
+      <Typography variant="body1" textAlign="center">
+        {address}
+      </Typography>
+      <Typography variant="body1" textAlign="center">
+        {cpf}
+      </Typography>
+      <Stack direction={"row"} spacing={1}>
+        <Button
+          type="button"
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={() => setClientToUpdate(client)}
+        >
           Atualizar
-        </button>
-        <button
+        </Button>
+        <Button
           type="submit"
+          variant="contained"
+          color="warning"
+          size="small"
           onClick={(event) => handleDeleteClient(event, _id)}
         >
           Deletar
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Stack>
+    </Card>
   );
 }

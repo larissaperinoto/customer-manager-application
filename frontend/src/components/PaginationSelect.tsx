@@ -1,16 +1,25 @@
+import { MenuItem, Select, Typography } from "@mui/material";
+
 type PaginationSelectProps = {
   usersPerPage: number;
   setUsersPerPage: Function;
 };
+
+const itensPerPage = [10, 15, 20, 25];
 
 export default function PaginationSelect({
   usersPerPage,
   setUsersPerPage,
 }: PaginationSelectProps) {
   return (
-    <div>
-      <span>Itens por página</span>
-      <select
+    <>
+      <Typography variant="body1" textAlign="center">
+        Itens por página
+      </Typography>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        size="small"
         value={usersPerPage}
         onChange={(event) =>
           setUsersPerPage(
@@ -18,11 +27,10 @@ export default function PaginationSelect({
           )
         }
       >
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="25">25</option>
-      </select>
-    </div>
+        {itensPerPage.map((number) => (
+          <MenuItem value={number}>{number}</MenuItem>
+        ))}
+      </Select>
+    </>
   );
 }

@@ -5,7 +5,7 @@ class User {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const token = await userService.login(req.body);
-      return res.status(201).json({ token });
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }

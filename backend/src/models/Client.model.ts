@@ -21,7 +21,6 @@ const Client = new mongoose.Schema({
   cpf: {
     type: Number,
     require: true,
-    select: false,
   },
   createdAt: {
     type: Date,

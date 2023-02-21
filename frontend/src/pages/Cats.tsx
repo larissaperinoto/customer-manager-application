@@ -1,7 +1,8 @@
+import { MenuItem, Select, Stack, Typography } from "@mui/material";
+import { Container } from "@mui/system";
 import { useState } from "react";
 import { Header } from "../components";
 import statusList from "../services/statusCode";
-import "../style/Cats.css";
 
 export default function Cats() {
   const [statusCode, setStatusCode] = useState("");
@@ -10,20 +11,35 @@ export default function Cats() {
     <>
       <Header />
       <section>
-        <div className="status_button_container">
-          <h1>Status Cat</h1>
-          <label htmlFor="status_select">
+        <Stack
+          direction={"row"}
+          spacing={1}
+          sx={{ textAlign: "center", ml: 3, mb: 2 }}
+        >
+          <Typography variant="h1" textAlign="center" sx={{ fontSize: 20 }}>
             Selecione um status HTTP
-            <select onChange={(event) => setStatusCode(event.target.value)}>
-              {statusList.map((status) => (
-                <option value={status}>{status}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div className="image_container">
-          <img src={`https://http.cat/${statusCode}.jpg`} alt="" />
-        </div>
+          </Typography>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Filtrar por"
+            size="small"
+            onChange={(event) =>
+              setStatusCode(event.target.value as unknown as string)
+            }
+          >
+            {statusList.map((status) => (
+              <MenuItem value={status}>{status}</MenuItem>
+            ))}
+          </Select>
+        </Stack>
+        <Container maxWidth="sm" sx={{ textAlign: "center" }}>
+          <img
+            src={`https://http.cat/${statusCode}.jpg`}
+            alt="Cat with status HTTP"
+            width="100%"
+          />
+        </Container>
       </section>
     </>
   );
