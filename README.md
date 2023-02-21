@@ -1,4 +1,4 @@
-# Desafio para o processo seletivo SHARENERGY 2023/01
+# Desafio SHARENERGY 2023/01
 
 ## Objetivo
 
